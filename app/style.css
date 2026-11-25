@@ -1655,7 +1655,7 @@ textarea:focus-visible {
   gap: 2rem;
   align-items: center;
 }
-.join-page svg {
+.join-page > svg {
   width: min(100%, 330px);
   transform: rotate(8deg);
   justify-self: center;
@@ -2283,7 +2283,7 @@ textarea:focus-visible {
     width: 93%;
     margin: auto;
   }
-  .join-page svg {
+  .join-page > svg {
     width: min(68%, 260px);
   }
   .info-intro p:not(.tag) {
