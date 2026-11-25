@@ -1,4 +1,4 @@
-# Brownie Boo! Site B
+# Brownie Boo!
 
 An independent local storefront and campaign preview. Use Node.js 22.16 or later.
 
