@@ -1,0 +1,223 @@
+:root {
+  --ink-ease: cubic-bezier(0.18, 0.68, 0.23, 1);
+}
+
+:where(
+  .action,
+  .bare-button,
+  button.text-link,
+  .shop-filters a,
+  .segmented button,
+  .family-position button,
+  .run-pause,
+  .bag-quantity button,
+  .head-shop,
+  .nav-shop,
+  .head-club,
+  .menu-button,
+  .mobile-menu-top button,
+  .foot-club,
+  details > summary
+) {
+  --sketch-open: 0;
+  position: relative;
+}
+
+:where(
+    .action,
+    .bare-button,
+    button.text-link,
+    .shop-filters a,
+    .segmented button,
+    .family-position button,
+    .run-pause,
+    .bag-quantity button,
+    .head-shop,
+    .nav-shop,
+    .head-club,
+    .head-bag,
+    .menu-button,
+    .mobile-menu-top button,
+    .foot-club,
+    details > summary
+  ):not(:disabled):is(:focus-visible, :active) {
+  --sketch-open: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(
+      .action,
+      .bare-button,
+      button.text-link,
+      .shop-filters a,
+      .segmented button,
+      .family-position button,
+      .run-pause,
+      .bag-quantity button,
+      .head-shop,
+      .nav-shop,
+      .head-club,
+      .head-bag,
+      .menu-button,
+      .mobile-menu-top button,
+      .foot-club,
+      details > summary
+    ):not(:disabled):hover {
+    --sketch-open: 1;
+  }
+}
+
+.action {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.action::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: currentColor;
+  mask: url("/art/sketch-button-dashes.svg") center / 100% 100% no-repeat;
+  opacity: calc(0.48 * var(--sketch-open));
+  clip-path: inset(0 calc(64% * (1 - var(--sketch-open))) 0 0);
+  transition:
+    clip-path 0.51s var(--ink-ease),
+    opacity 0.21s ease;
+  pointer-events: none;
+}
+
+.ink-label {
+  position: relative;
+  display: inline-grid;
+  min-width: 0;
+  white-space: normal;
+  align-items: center;
+  line-height: 1.3;
+}
+
+.ink-label > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  translate: calc(-6px * var(--sketch-open)) 0;
+  transition: translate 0.34s var(--ink-ease);
+}
+
+.ink-label > svg {
+  position: absolute;
+  top: 50%;
+  left: calc(100% - 0.08rem);
+  width: 15px;
+  height: 15px;
+  opacity: var(--sketch-open);
+  transform: translate(calc(5px * (1 - var(--sketch-open))), -50%)
+    rotate(calc(-9deg * (1 - var(--sketch-open))));
+  transition:
+    transform 0.4s var(--ink-ease),
+    opacity 0.24s ease;
+}
+
+.ink-label > svg path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--sketch-open));
+  transition: stroke-dashoffset 0.45s var(--ink-ease);
+}
+
+button:disabled .ink-label {
+  --sketch-open: 0;
+}
+
+:where(
+  .bag-quantity button,
+  .shop-filters a,
+  .segmented button,
+  .family-position button,
+  .run-pause,
+  .head-club,
+  .foot-club
+)::after {
+  content: "";
+  position: absolute;
+  inset: 3px 4px;
+  border-radius: inherit;
+  border-bottom: 1px dashed currentColor;
+  opacity: calc(0.7 * var(--sketch-open));
+  transform-origin: 16% 100%;
+  transform: scaleX(calc(0.14 + 0.86 * var(--sketch-open)));
+  transition:
+    transform 0.36s var(--ink-ease),
+    opacity 0.23s ease;
+  pointer-events: none;
+}
+
+:where(.bare-button, button.text-link, details > summary)::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0.12rem;
+  width: min(48px, 100%);
+  height: 4px;
+  border-bottom: 1px solid currentColor;
+  border-radius: 45% 18% 61% 25%;
+  opacity: var(--sketch-open);
+  transform: scaleX(var(--sketch-open)) rotate(-2deg);
+  transform-origin: left;
+  transition:
+    transform 0.42s var(--ink-ease),
+    opacity 0.21s ease;
+  pointer-events: none;
+}
+
+.bag-quantity button .sketch-count,
+.faq-list summary .sketch-count {
+  width: 18px;
+  height: 18px;
+  margin-inline: auto;
+  transform: rotate(calc(-8deg * var(--sketch-open)));
+  transition: transform 0.38s var(--ink-ease);
+}
+.faq-list summary .sketch-count {
+  margin-inline: 0;
+}
+.faq-list details[open] summary .sketch-count path + path {
+  opacity: 0;
+}
+.menu-button > svg,
+.mobile-menu-top button svg {
+  transform: rotate(calc(-10deg * var(--sketch-open)));
+  transition: transform 0.38s var(--ink-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink-label > span {
+    translate: none;
+  }
+  .ink-label > svg {
+    display: none;
+  }
+  .action::after {
+    clip-path: none;
+  }
+}
+
+.head-bag > svg {
+  transform: rotate(calc(-9deg * var(--sketch-open, 0)));
+  transition: transform 0.38s var(--ink-ease);
+}
+
+.builder-slots select {
+  appearance: none;
+  padding-inline-end: 2.25rem;
+  background-image: url("/art/sketch-chevron.svg");
+  background-position: right 0.72rem center;
+  background-repeat: no-repeat;
+  background-size: 0.85rem;
+}
+
+@media (forced-colors: active) {
+  .builder-slots select {
+    appearance: auto;
+    background-image: none;
+  }
+}

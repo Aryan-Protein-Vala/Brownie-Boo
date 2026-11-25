@@ -1,0 +1,249 @@
+@media (forced-colors: none) {
+  :where(
+    .action,
+    .head-shop,
+    .nav-shop,
+    .menu-button,
+    .mobile-menu-top button,
+    .head-club,
+    .foot-club,
+    .shop-filters a,
+    .segmented button,
+    .family-position button,
+    .run-pause,
+    .bag-quantity button
+  ) {
+    --sketch-fill: url("/art/sketch-button-fill.svg");
+    --sketch-outline: url("/art/sketch-button-ink.svg");
+    --sketch-shape: var(--sketch-outline);
+    --sketch-color: #300f27a3;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      background-color: var(--sketch-color);
+      mask: var(--sketch-shape) center / 100% 100% no-repeat;
+      pointer-events: none;
+      transition: background-color 0.28s var(--ink-ease);
+    }
+  }
+
+  :is(
+    .action,
+    .head-shop,
+    .nav-shop,
+    .menu-button,
+    .mobile-menu-top button,
+    .head-club,
+    .foot-club,
+    .shop-filters a,
+    .segmented button,
+    .family-position button,
+    .run-pause,
+    .bag-quantity button
+  ),
+  .site-header
+    :is(.head-shop, .nav-shop):is(:hover, :focus-visible, [aria-current]),
+  :is(
+    .action,
+    .menu-button,
+    .mobile-menu-top button,
+    .head-club,
+    .foot-club,
+    .bag-quantity button
+  ):is(:hover, :focus-visible),
+  :is(.shop-filters a, .family-position button, .segmented button):is(
+    :hover,
+    .is-active,
+    [aria-current],
+    [aria-pressed="true"]
+  ) {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .action {
+    --sketch-shape: var(--sketch-fill);
+    overflow: visible;
+  }
+
+  .action-pink {
+    --sketch-color: var(--pink);
+  }
+  .action-pink:not(:disabled):is(:hover, :focus-visible) {
+    --sketch-color: #ffe8ef;
+  }
+  .action-ink {
+    --sketch-color: var(--ink);
+  }
+  .action-ink:not(:disabled):is(:hover, :focus-visible) {
+    --sketch-color: #5e1a40;
+  }
+
+  :is(.head-shop, .nav-shop) {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: var(--shell-rose);
+  }
+  :is(.head-shop, .nav-shop):is(:hover, :focus-visible, [aria-current]) {
+    --sketch-color: var(--shell-milk);
+  }
+
+  :is(.menu-button, .head-club, .foot-club) {
+    --sketch-color: #f3aacb9e;
+  }
+  :is(.menu-button, .head-club):is(:hover, :focus-visible) {
+    --sketch-color: var(--shell-rose);
+  }
+
+  .mobile-menu-top button:hover {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: #58153b;
+  }
+
+  .foot-club:hover {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: var(--shell-rose);
+  }
+
+  :is(
+    .shop-filters a:is(.is-active, :hover),
+    .segmented button[aria-pressed="true"],
+    .family-position button:is([aria-current], :hover)
+  ) {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: var(--ink);
+  }
+
+  .run-pause:is(:hover, :focus-visible) {
+    --sketch-color: var(--ink);
+  }
+
+  .bag-quantity button {
+    --sketch-fill: url("/art/sketch-round.svg");
+    --sketch-outline: url("/art/sketch-round-ink.svg");
+  }
+  .bag-quantity button:not(:disabled):hover {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: var(--paper);
+  }
+
+  :is(
+    .size-row,
+    .bag-line,
+    .faq-list details,
+    .ingredients-ledger > *,
+    .legal-copy > section,
+    .restock,
+    .club-community,
+    .site-footer .foot-bottom,
+    .mobile-menu nav a
+  ) {
+    position: relative;
+    border-top-color: transparent;
+  }
+
+  :is(
+    .header-inner,
+    .run-readout,
+    .size-row:nth-child(3),
+    .bag-line:last-child,
+    .faq-list details:last-of-type
+  ) {
+    position: relative;
+    border-bottom-color: transparent;
+  }
+
+  :is(
+    .size-row,
+    .bag-line,
+    .faq-list details,
+    .ingredients-ledger > *,
+    .legal-copy > section,
+    .restock,
+    .club-community,
+    .site-footer .foot-bottom
+  )::before,
+  .mobile-menu nav a::after,
+  :is(
+    .header-inner,
+    .run-readout,
+    .size-row:nth-child(3),
+    .bag-line:last-child,
+    .faq-list details:last-of-type
+  )::after,
+  a.text-link::after,
+  button.text-link::before {
+    content: "";
+    position: absolute;
+    inset: -3px 0 auto;
+    height: 6px;
+    background: var(--rule-ink, #300f276b);
+    mask: url("/art/sketch-rule.svg") center / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+
+  :is(.header-inner, .site-footer .foot-bottom) {
+    --rule-ink: #f3aacb67;
+  }
+
+  :is(
+    .header-inner,
+    .run-readout,
+    .size-row:nth-child(3),
+    .bag-line:last-child,
+    .faq-list details:last-of-type
+  )::after {
+    top: auto;
+    bottom: -3px;
+    transform: scaleX(-1);
+  }
+
+  .text-link:is(a, button),
+  .text-link:is(a, button):hover {
+    position: relative;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 0.32rem;
+  }
+  a.text-link::after,
+  button.text-link::before {
+    top: auto;
+    bottom: -2px;
+    background: currentColor;
+    opacity: 0.72;
+  }
+}
+
+.shop-item {
+  border-top: 0;
+}
+
+.shop-note {
+  position: relative;
+}
+
+:is(.shop-item, .shop-note) > .shop-edge {
+  --edge-color: var(--paper);
+  height: clamp(11px, 2vw, 23px);
+}
+
+.tint-rose + .shop-item .shop-edge {
+  --edge-color: var(--tint-rose);
+}
+
+.tint-lilac + .shop-item .shop-edge {
+  --edge-color: var(--tint-lilac);
+}
+
+.shop-note > .shop-edge {
+  --edge-color: var(--tint-mocha);
+}
+
+.customer-form > :is(input, textarea),
+.email-row input,
+.builder-slots select,
+.weights label > span {
+  border-radius: 9px 12px 10px 8px / 11px 8px 12px 10px;
+}
