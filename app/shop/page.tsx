@@ -27,13 +27,20 @@ export default async function Shop({
             and a size to suit the situation.
           </p>
           <div className="shop-filters" aria-label="Browse by pack size">
-            <SiteLink className={!selected ? "is-active" : ""} href="/shop">
+            <SiteLink
+              className={selected ? "ink-action" : "ink-action is-active"}
+              href="/shop"
+            >
               All sizes
             </SiteLink>
             {packs.map(({ grams }) => (
               <SiteLink
                 key={grams}
-                className={selected?.grams === grams ? "is-active" : ""}
+                className={
+                  selected?.grams === grams
+                    ? "ink-action is-active"
+                    : "ink-action"
+                }
                 href={`/shop?size=${grams}`}
               >
                 {grams} g

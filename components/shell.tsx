@@ -121,7 +121,9 @@ export function SiteLink({
       className={className}
       aria-label={ariaLabel}
     >
-      {className?.split(/\s+/).includes("action") ? (
+      {className
+        ?.split(/\s+/)
+        .some((name) => name === "action" || name === "ink-action") ? (
         <ActionLabel>{children}</ActionLabel>
       ) : (
         children
@@ -200,7 +202,7 @@ export function Header() {
             ))}
           </nav>
           <div className="head-actions">
-            <SiteLink className="head-club" href="/early-access">
+            <SiteLink className="head-club ink-action" href="/early-access">
               Boo Club
             </SiteLink>
             <SiteLink
@@ -308,8 +310,8 @@ export function Footer() {
               Here for the crumbs.”
             </p>
           </div>
-          <SiteLink className="foot-club" href="/early-access">
-            Get First Bite <Arrow />
+          <SiteLink className="foot-club ink-action" href="/early-access">
+            Get First Bite
           </SiteLink>
         </div>
         <nav className="foot-nav" aria-label="Footer navigation">

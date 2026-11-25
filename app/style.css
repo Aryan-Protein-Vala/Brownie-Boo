@@ -13,6 +13,7 @@
   font-display: swap;
 }
 :root {
+  --action-rose-hover: #ffe8ef;
   --family-intro: #f9cadd;
   --tint-rose: #f7c0d3;
   --tint-lilac: #e6d5f2;
@@ -147,10 +148,10 @@ textarea:focus-visible {
   color: var(--ink);
   background: var(--pink);
 }
-.action-pink:is(:hover, :focus-visible) {
+:is(.action-pink, .head-club, .foot-club):is(:hover, :focus-visible) {
   color: #350f29;
   border-color: #fff0f5;
-  background: #ffe8ef;
+  background: var(--action-rose-hover);
 }
 .action-ink {
   color: var(--paper);
@@ -245,7 +246,6 @@ textarea:focus-visible {
 }
 .desktop-nav a[aria-current],
 .desktop-nav a:hover,
-.head-club:hover,
 .head-bag:hover {
   color: #fff4f8;
 }
@@ -262,7 +262,7 @@ textarea:focus-visible {
 .head-club {
   border: 1px solid #f8b5d46e;
   border-radius: 999px;
-  padding: 0.55rem 0.98rem;
+  padding: 0.55rem 1.12rem;
 }
 .head-bag {
   min-width: 42px;
@@ -668,7 +668,7 @@ textarea:focus-visible {
     border: 1px solid #300f277d;
     border-radius: 999px;
     background: none;
-    padding: 0.42rem 0.8rem;
+    padding: 0.42rem 0.98rem;
     font-size: 0.86rem;
     font-weight: 750;
     transition:
@@ -1138,7 +1138,7 @@ textarea:focus-visible {
 .segmented button {
   border: 1px solid var(--ink);
   border-radius: 99px;
-  padding: 0.4rem 0.67rem;
+  padding: 0.4rem 0.98rem;
   font-size: 0.89rem;
   font-weight: 750;
   transition:

@@ -245,20 +245,22 @@ export function Account() {
   return (
     <>
       <div className="segmented">
-        <button
+        <ActionButton
+          className="ink-action"
           type="button"
           aria-pressed={!register}
           onClick={() => setRegister(false)}
         >
           Sign in
-        </button>
-        <button
+        </ActionButton>
+        <ActionButton
+          className="ink-action"
           type="button"
           aria-pressed={register}
           onClick={() => setRegister(true)}
         >
           Create account
-        </button>
+        </ActionButton>
       </div>
       <CustomerForm
         key={String(register)}

@@ -375,9 +375,13 @@ export function BrownieRun() {
               >
                 Jump
               </ActionButton>
-              <button className="run-pause" type="button" onClick={pause}>
+              <ActionButton
+                className="run-pause ink-action"
+                type="button"
+                onClick={pause}
+              >
                 Pause
-              </button>
+              </ActionButton>
             </>
           ) : (
             <ActionButton

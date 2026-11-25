@@ -99,9 +99,8 @@
   align-items: center;
 }
 
-.head-club:hover {
-  color: var(--shell-milk);
-  border-color: var(--shell-milk);
+:is(.head-club, .foot-club):focus-visible {
+  outline-color: var(--shell-milk);
 }
 
 .head-bag {
@@ -276,20 +275,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.45rem 0.84rem;
+  padding: 0.45rem 1.12rem;
   border: 1px solid #f3aacb77;
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.91rem;
-}
-
-.foot-club:hover {
-  color: var(--shell-ink);
-  background: var(--shell-rose);
-}
-
-.foot-club svg {
-  width: 16px;
 }
 
 .foot-nav {

@@ -4,19 +4,14 @@
 
 :where(
   .action,
+  .ink-action,
   .bare-button,
   button.text-link,
-  .shop-filters a,
-  .segmented button,
-  .family-position button,
-  .run-pause,
   .bag-quantity button,
   .head-shop,
   .nav-shop,
-  .head-club,
   .menu-button,
   .mobile-menu-top button,
-  .foot-club,
   details > summary
 ) {
   --sketch-open: 0;
@@ -25,20 +20,15 @@
 
 :where(
     .action,
+    .ink-action,
     .bare-button,
     button.text-link,
-    .shop-filters a,
-    .segmented button,
-    .family-position button,
-    .run-pause,
     .bag-quantity button,
     .head-shop,
     .nav-shop,
-    .head-club,
     .head-bag,
     .menu-button,
     .mobile-menu-top button,
-    .foot-club,
     details > summary
   ):not(:disabled):is(:focus-visible, :active) {
   --sketch-open: 1;
@@ -47,20 +37,15 @@
 @media (hover: hover) and (pointer: fine) {
   :where(
       .action,
+      .ink-action,
       .bare-button,
       button.text-link,
-      .shop-filters a,
-      .segmented button,
-      .family-position button,
-      .run-pause,
       .bag-quantity button,
       .head-shop,
       .nav-shop,
-      .head-club,
       .head-bag,
       .menu-button,
       .mobile-menu-top button,
-      .foot-club,
       details > summary
     ):not(:disabled):hover {
     --sketch-open: 1;
@@ -72,12 +57,13 @@
   overflow: hidden;
 }
 
-.action::after {
+:is(.action, .ink-action, .bag-quantity button)::after {
   content: "";
   position: absolute;
   inset: 4px;
   background: currentColor;
-  mask: url("/art/sketch-button-dashes.svg") center / 100% 100% no-repeat;
+  mask: var(--ink-sweep, url("/art/sketch-button-dashes.svg")) center / 100%
+    100% no-repeat;
   opacity: calc(0.48 * var(--sketch-open));
   clip-path: inset(0 calc(64% * (1 - var(--sketch-open))) 0 0);
   transition:
@@ -128,29 +114,6 @@ button:disabled .ink-label {
   --sketch-open: 0;
 }
 
-:where(
-  .bag-quantity button,
-  .shop-filters a,
-  .segmented button,
-  .family-position button,
-  .run-pause,
-  .head-club,
-  .foot-club
-)::after {
-  content: "";
-  position: absolute;
-  inset: 3px 4px;
-  border-radius: inherit;
-  border-bottom: 1px dashed currentColor;
-  opacity: calc(0.7 * var(--sketch-open));
-  transform-origin: 16% 100%;
-  transform: scaleX(calc(0.14 + 0.86 * var(--sketch-open)));
-  transition:
-    transform 0.36s var(--ink-ease),
-    opacity 0.23s ease;
-  pointer-events: none;
-}
-
 :where(.bare-button, button.text-link, details > summary)::after {
   position: absolute;
   content: "";
@@ -167,6 +130,10 @@ button:disabled .ink-label {
     transform 0.42s var(--ink-ease),
     opacity 0.21s ease;
   pointer-events: none;
+}
+
+.bag-quantity button {
+  --ink-sweep: url("/art/sketch-round-ink.svg");
 }
 
 .bag-quantity button .sketch-count,
@@ -196,7 +163,7 @@ button:disabled .ink-label {
   .ink-label > svg {
     display: none;
   }
-  .action::after {
+  :is(.action, .ink-action, .bag-quantity button)::after {
     clip-path: none;
   }
 }

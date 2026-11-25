@@ -73,8 +73,12 @@
   .action-pink {
     --sketch-color: var(--pink);
   }
-  .action-pink:not(:disabled):is(:hover, :focus-visible) {
-    --sketch-color: #ffe8ef;
+  :is(.action-pink, .head-club, .foot-club):not(:disabled):is(
+      :hover,
+      :focus-visible
+    ) {
+    --sketch-shape: var(--sketch-fill);
+    --sketch-color: var(--action-rose-hover);
   }
   .action-ink {
     --sketch-color: var(--ink);
@@ -94,18 +98,13 @@
   :is(.menu-button, .head-club, .foot-club) {
     --sketch-color: #f3aacb9e;
   }
-  :is(.menu-button, .head-club):is(:hover, :focus-visible) {
+  .menu-button:is(:hover, :focus-visible) {
     --sketch-color: var(--shell-rose);
   }
 
   .mobile-menu-top button:hover {
     --sketch-shape: var(--sketch-fill);
     --sketch-color: #58153b;
-  }
-
-  .foot-club:hover {
-    --sketch-shape: var(--sketch-fill);
-    --sketch-color: var(--shell-rose);
   }
 
   :is(

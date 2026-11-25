@@ -295,14 +295,15 @@ export function Family() {
           </div>
           <div className="family-position" aria-label="Choose a brownie">
             {products.map((product, index) => (
-              <button
+              <ActionButton
+                className="ink-action"
                 type="button"
                 key={product.slug}
                 aria-current={active === index ? "true" : undefined}
                 onClick={() => jump(index)}
               >
                 {product.name}
-              </button>
+              </ActionButton>
             ))}
           </div>
         </div>

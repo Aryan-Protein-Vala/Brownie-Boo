@@ -501,7 +501,7 @@
 
 .run-pause {
   background: transparent;
-  padding: 0.38rem 0.8rem;
+  padding: 0.38rem 0.98rem;
   border: 1px solid var(--ink);
   border-radius: 3rem;
   min-height: 44px;
