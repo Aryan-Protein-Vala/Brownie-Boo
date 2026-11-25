@@ -6,6 +6,7 @@ import { Account, Contact, Track, Waitlist } from "../../components/forms";
 import { SiteLink } from "../../components/shell";
 import { art, products, questions } from "../../lib/catalogue";
 import { hasLocalServices } from "../../lib/preview-mode";
+import { formSubmitEndpoint, hasCustomerForms } from "../../lib/formsubmit";
 
 const titles = {
   "our-story": "Our Story",
@@ -60,24 +61,35 @@ function Page({
 }
 
 function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
-  const docs = {
+  const docs: Record<typeof kind, [string, ReactNode][]> = {
     privacy: [
       [
         "What this preview stores",
         hasLocalServices
-          ? "Email addresses submitted to the Boo Club, messages sent through the contact form, and any accounts you create are stored on the machine running Site B. Passwords are stored as hashes. Your bag stays in this browser."
-          : "Your bag stays in this browser. This storefront preview does not collect sign-ups, contact messages or account details.",
+          ? "Your bag stays in this browser. Local preview accounts and campaign assignments are stored on the machine running Site B."
+          : "Your bag stays in this browser. This storefront preview uses no customer accounts.",
       ],
       [
-        hasLocalServices ? "How it’s used" : "Your bag",
-        hasLocalServices
-          ? "We use submitted information to run the preview, remember your sign-in and bag, and count which hero campaigns lead to sign-ups. The hero cookie carries a random identifier. Email and payment providers are disconnected."
-          : "We save your brownie picks on this device so they’re here when you come back.",
+        "Sign-ups and messages",
+        formSubmitEndpoint ? (
+          <>
+            We use the email address you submit for the updates you request or
+            to reply to your message. FormSubmit processes your submission and
+            delivers it to our inbox.{" "}
+            <a href="https://formsubmit.co/privacy.pdf">
+              FormSubmit’s privacy policy
+            </a>
+          </>
+        ) : hasLocalServices ? (
+          "Waitlist sign-ups and contact messages are stored on the machine running Site B."
+        ) : (
+          "Sign-ups and contact messages open closer to the first drop."
+        ),
       ],
       [
         "Your choices",
-        hasLocalServices
-          ? "You can clear browser storage to remove your bag and cookies. Use the contact form for a request about saved preview records."
+        hasCustomerForms
+          ? "You can clear browser storage to reset your bag. Use the contact form to ask about your submission or to stop receiving updates."
           : "You can clear browser storage to reset your bag.",
       ],
     ],
@@ -88,8 +100,8 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
       ],
       [
         "Bags and early access",
-        hasLocalServices
-          ? "Adding food to a bag saves your picks on this device. Joining the Boo Club or registering interest lets us record your preferences. Both are free and carry no obligation to buy."
+        hasCustomerForms
+          ? "Adding brownies to your bag saves your picks on this device. Boo Club sign-ups and drop and restock interest are free and carry no obligation to buy."
           : "Adding brownies to your bag saves your picks on this device. It carries no obligation to buy.",
       ],
       [
@@ -227,7 +239,7 @@ export default async function Info({ params }: Props) {
             </>
           }
           copy={
-            hasLocalServices
+            hasCustomerForms
               ? "You can leave the group chat on read. We’ll send the batch news."
               : "The first batch is in the works. This is where the drop dates will land."
           }
@@ -249,12 +261,15 @@ export default async function Info({ params }: Props) {
                 Release dates, available packs, prices and dispatch estimates
                 will be shared once confirmed.
               </p>
-              {hasLocalServices ? (
+              {hasCustomerForms ? (
                 <>
                   <p>
                     Leave your email to register interest in the first batch.
                   </p>
-                  <Waitlist topic="reservation interest: drop-001" />
+                  <Waitlist
+                    endpoint={formSubmitEndpoint}
+                    topic="reservation interest: drop-001"
+                  />
                 </>
               ) : (
                 <SiteLink href="/shop" className="text-link">
@@ -281,13 +296,8 @@ export default async function Info({ params }: Props) {
         >
           <div className="join-page">
             <div>
-              {hasLocalServices ? (
-                <>
-                  <Waitlist />
-                  <p className="form-fine">
-                    Preview sign-ups are stored locally.
-                  </p>
-                </>
+              {hasCustomerForms ? (
+                <Waitlist endpoint={formSubmitEndpoint} />
               ) : (
                 <>
                   <p>Sign-ups open closer to the first drop.</p>
@@ -350,13 +360,13 @@ export default async function Info({ params }: Props) {
             </>
           }
           copy={
-            hasLocalServices
-              ? "Questions, ideas, and unusually strong opinions about chocolate are welcome. Your note is saved in this local preview."
+            hasCustomerForms
+              ? "Questions, ideas, and unusually strong opinions about chocolate are welcome."
               : "The contact form opens with the shop. We’re looking forward to your unusually strong opinions about chocolate."
           }
           theme="rose"
         >
-          {hasLocalServices && <Contact />}
+          {hasCustomerForms && <Contact endpoint={formSubmitEndpoint} />}
         </Page>
       );
     case "account":

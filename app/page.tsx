@@ -8,6 +8,7 @@ import { BrownieRun } from "../components/brownie-run";
 import { SiteLink } from "../components/shell";
 import { art, packs, variants } from "../lib/catalogue";
 import { hasLocalServices } from "../lib/preview-mode";
+import { formSubmitEndpoint, hasCustomerForms } from "../lib/formsubmit";
 import "./home-film.css";
 
 export default async function Home({
@@ -199,8 +200,12 @@ export default async function Home({
             </span>
           </h2>
           <p>One group chat you’ll actually want updates from.</p>
-          {hasLocalServices ? (
-            <Waitlist variant={forced ? undefined : variant.id} compact />
+          {hasCustomerForms ? (
+            <Waitlist
+              endpoint={formSubmitEndpoint}
+              variant={forced ? undefined : variant.id}
+              compact
+            />
           ) : (
             <SiteLink href="/drops" className="action action-ink">
               See Upcoming Drops

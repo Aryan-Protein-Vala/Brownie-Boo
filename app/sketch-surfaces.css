@@ -246,3 +246,70 @@
 .weights label > span {
   border-radius: 9px 12px 10px 8px / 11px 8px 12px 10px;
 }
+
+.sketch-field {
+  display: grid;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+}
+
+.sketch-field > :is(input, textarea) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0.77rem 0.9rem;
+  background: var(--paper);
+  border: 1px solid #300f277f;
+  border-radius: 9px 12px 10px 8px / 11px 8px 12px 10px;
+}
+
+.sketch-field > textarea {
+  resize: vertical;
+}
+
+.sketch-field > .sketch-field-art {
+  display: none;
+}
+
+.email-row > .sketch-field {
+  flex: 1;
+}
+
+@media (max-width: 365px) {
+  .email-row > .sketch-field {
+    flex-basis: 100%;
+  }
+}
+
+@media (forced-colors: none) {
+  .sketch-field > :is(input, textarea) {
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .sketch-field > :is(input, textarea):focus-visible {
+    outline: none;
+  }
+
+  .sketch-field > .sketch-field-art {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    fill: var(--paper);
+    stroke: #300f278c;
+    stroke-width: 1.4px;
+    stroke-linejoin: round;
+    transition: stroke var(--fast) var(--ink-ease);
+  }
+
+  .sketch-field:focus-within > .sketch-field-art {
+    stroke: var(--ink);
+    stroke-width: 2.6px;
+  }
+}

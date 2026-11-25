@@ -5,7 +5,7 @@ import { Waitlist } from "../../../components/forms";
 import { ProductControls } from "../../../components/shop";
 import { SiteLink } from "../../../components/shell";
 import { art, findProduct, packs, products } from "../../../lib/catalogue";
-import { hasLocalServices } from "../../../lib/preview-mode";
+import { formSubmitEndpoint, hasCustomerForms } from "../../../lib/formsubmit";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -87,10 +87,13 @@ export default async function ProductPage({ params, searchParams }: Props) {
           <SiteLink className="text-link" href="/ingredients">
             Ingredients & Nutrition
           </SiteLink>
-          {hasLocalServices && (
+          {hasCustomerForms && (
             <details className="restock">
               <summary>Get restock updates for this Boo</summary>
-              <Waitlist topic={`restocks: ${product.slug}`} />
+              <Waitlist
+                endpoint={formSubmitEndpoint}
+                topic={`restocks: ${product.slug}`}
+              />
             </details>
           )}
         </div>

@@ -1207,6 +1207,7 @@ textarea:focus-visible {
 }
 .shop-note a,
 .form-fine a,
+.legal-copy p a,
 .product-back {
   text-decoration: underline;
   text-underline-offset: 0.23em;

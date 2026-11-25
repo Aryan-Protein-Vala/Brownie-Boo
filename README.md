@@ -11,7 +11,9 @@ Open [Site B](http://127.0.0.1:4173/). For the optimized server, run `npm run bu
 
 ## Hosted preview
 
-Vercel serves a browsable preview with the product pages, box builder, browser-local bag and arcade game. The hosted site uses the “Chocolate first” hero by default and accepts the same hero preview URLs. Waitlists, contact submissions, accounts, order tracking, staff controls and experiment tracking use the private local database and are available only in the local preview. Paid checkout is disabled in both modes.
+Vercel hosts the product pages, box builder, browser-local bag and arcade game. The hosted site uses the “Chocolate first” hero by default and accepts the same hero preview URLs. Paid checkout is disabled.
+
+Boo Club, first-batch interest, product restock and contact forms post to FormSubmit when `BOO_FORMSUBMIT_RECIPIENT` is set to the inbox address or its activated FormSubmit token. Configure the value in Vercel for production or in `.env.local` for local testing. The first submission triggers a confirmation email. Activate the inbox using that email to receive submissions.
 
 Set `BOO_HOSTED_PREVIEW=1` to run in hosted mode outside Vercel.
 
@@ -19,9 +21,9 @@ Set `BOO_HOSTED_PREVIEW=1` to run in hosted mode outside Vercel.
 
 Open [Staff](http://127.0.0.1:4173/admin) and use the key generated in `.local/admin-password.txt`. Set `BOO_PREVIEW_ADMIN_PASSWORD` to use your own key. SQLite stores local submissions, accounts, experiment assignments, and draft configuration in `.local/preview.sqlite`. You can point the server at a different private directory with `BOO_PREVIEW_DATA_DIR`.
 
-The bag and box builder let visitors save their picks on the device. Waitlist, per-product restock interest, per-drop interest, contact, and account forms write to the local database. Tracking looks up existing order records by reference and email. The owner view manages all nine draft SKUs, batch dates and allocations, discount codes, product notes, and experiment weights. There are no live orders, reservations, payments, delivery integrations, or outbound email. Draft commercial and product information stays private. Public commerce requires approved product and business data, operational providers, and a separate release.
+The bag and box builder let visitors save their picks on the device. Account forms write to the local database. Local waitlist, drop, restock and contact forms also use that database when no FormSubmit recipient is set. Tracking looks up existing order records by reference and email. The owner view manages all nine draft SKUs, batch dates and allocations, discount codes, product notes, and experiment weights. There are no live orders, reservations, payments or delivery integrations. Draft commercial and product information stays private. Public commerce requires approved product and business data, operational providers, and a separate release.
 
-The ten hero campaigns are available at `/?hero=A` through `/?hero=J`. These preview URLs skip new assignment and impression tracking. The homepage assigns active campaigns by weight and remembers the choice using a browser cookie. Campaigns G and J start paused pending final formulation and labelling review. The dashboard counts unique visitors assigned, exposed, clicked, and signed up.
+The ten hero campaigns are available at `/?hero=A` through `/?hero=J`. These preview URLs skip new assignment and impression tracking. The homepage assigns active campaigns by weight and remembers the choice using a browser cookie. Campaigns G and J start paused pending final formulation and labelling review. The dashboard counts unique visitors assigned, exposed and clicked, plus sign-ups made through the local database.
 
 ## Campaign art
 

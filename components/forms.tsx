@@ -23,11 +23,45 @@ function Status({ value }: { value: Result | null }) {
   );
 }
 
+function SketchField({ children }: { children: ReactNode }) {
+  return (
+    <span className="sketch-field">
+      <svg
+        className="sketch-field-art"
+        aria-hidden="true"
+        viewBox="0 0 480 100"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M14 5C60 2 108 7 153 5C202 2 243 2 287 5C335 7 383 3 423 4C450 5 468 1 474 13C478 25 473 39 476 51C479 66 475 76 476 86C476 96 465 97 451 96C414 94 380 99 339 96C298 93 262 97 219 96C173 94 136 98 98 95C67 94 42 98 16 96C4 95 4 87 5 75C6 59 2 49 4 35C6 23 1 7 14 5Z"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+      {children}
+    </span>
+  );
+}
+
+function FormSubmitFields({ subject }: { subject: string }) {
+  return (
+    <>
+      <input
+        type="hidden"
+        name="_subject"
+        value={`Brownie Boo! — ${subject}`}
+      />
+      <input type="hidden" name="_template" value="table" />
+    </>
+  );
+}
+
 export function Waitlist({
+  endpoint,
   variant,
   topic = "early access",
   compact = false,
 }: {
+  endpoint?: string;
   variant?: string;
   topic?: string;
   compact?: boolean;
@@ -35,6 +69,18 @@ export function Waitlist({
   const [result, setResult] = useState<Result | null>(null);
   const [busy, setBusy] = useState(false);
   const id = compact ? "club-email" : "waitlist-email";
+  const isDrop = topic.startsWith("reservation interest:");
+  const isRestock = topic.startsWith("restocks:");
+  const button = isDrop
+    ? "Register Interest"
+    : isRestock
+      ? "Get Restock Updates"
+      : "Get First Bite";
+  const subject = isDrop
+    ? "First batch interest"
+    : isRestock
+      ? "Restock sign-up"
+      : "Boo Club sign-up";
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -56,40 +102,52 @@ export function Waitlist({
     setBusy(false);
   }
   return (
-    <form onSubmit={submit} className={compact ? "club-form" : "customer-form"}>
+    <form
+      action={endpoint}
+      method="post"
+      onSubmit={endpoint ? undefined : submit}
+      className={compact ? "club-form" : "customer-form"}
+    >
+      {endpoint && (
+        <>
+          <FormSubmitFields subject={subject} />
+          <input type="hidden" name="topic" value={topic} />
+          {variant && <input type="hidden" name="campaign" value={variant} />}
+        </>
+      )}
       <label htmlFor={id}>Email address</label>
       <div className="email-row">
-        <input
-          id={id}
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          placeholder="you@example.com"
-          maxLength={254}
-        />
+        <SketchField>
+          <input
+            id={id}
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            placeholder="you@example.com"
+            maxLength={254}
+          />
+        </SketchField>
         <ActionButton
           type="submit"
           className="action action-ink"
           disabled={busy}
         >
-          {busy
-            ? "Joining…"
-            : topic.startsWith("reservation interest:")
-              ? "Register Interest"
-              : topic.startsWith("restocks:")
-                ? "Get Restock Updates"
-                : "Get First Bite"}
+          {busy ? "Joining…" : button}
         </ActionButton>
       </div>
       <p className="form-fine">
         Drop and restock updates from Brownie Boo.{" "}
         <a href="/privacy">Privacy</a>
       </p>
-      <Status value={result} />
-      <noscript>
-        <p>Enable JavaScript to join the local preview waitlist.</p>
-      </noscript>
+      {!endpoint && (
+        <>
+          <Status value={result} />
+          <noscript>
+            <p>Enable JavaScript to join the local preview waitlist.</p>
+          </noscript>
+        </>
+      )}
     </form>
   );
 }
@@ -128,7 +186,7 @@ function CustomerForm({
     setBusy(false);
   }
   return (
-    <form className="customer-form" onSubmit={submit}>
+    <form className="customer-form" method="post" onSubmit={submit}>
       {children}
       <ActionButton type="submit" className="action action-ink" disabled={busy}>
         {busy ? "One moment…" : button}
@@ -138,34 +196,55 @@ function CustomerForm({
   );
 }
 
-export function Contact() {
-  return (
-    <CustomerForm action="contact" button="Send your note">
+export function Contact({ endpoint }: { endpoint?: string }) {
+  const fields = (
+    <>
       <label htmlFor="sender-name">Your name</label>
-      <input
-        id="sender-name"
-        name="name"
-        autoComplete="name"
-        required
-        maxLength={100}
-      />
+      <SketchField>
+        <input
+          id="sender-name"
+          name="name"
+          autoComplete="name"
+          required
+          maxLength={100}
+        />
+      </SketchField>
       <label htmlFor="sender-email">Email address</label>
-      <input
-        id="sender-email"
-        type="email"
-        name="email"
-        autoComplete="email"
-        required
-        maxLength={254}
-      />
+      <SketchField>
+        <input
+          id="sender-email"
+          type="email"
+          name="email"
+          autoComplete="email"
+          required
+          maxLength={254}
+        />
+      </SketchField>
       <label htmlFor="message">What’s on your mind?</label>
-      <textarea
-        id="message"
-        name="message"
-        rows={5}
-        required
-        maxLength={2400}
-      />
+      <SketchField>
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          required
+          maxLength={2400}
+        />
+      </SketchField>
+    </>
+  );
+
+  return endpoint ? (
+    <form action={endpoint} method="post" className="customer-form">
+      <FormSubmitFields subject="Contact message" />
+      {fields}
+      <ActionButton type="submit">Send your note</ActionButton>
+      <p className="form-fine">
+        We use your email to reply. <a href="/privacy">Privacy</a>
+      </p>
+    </form>
+  ) : (
+    <CustomerForm action="contact" button="Send your note">
+      {fields}
     </CustomerForm>
   );
 }
