@@ -10,6 +10,13 @@
   margin-block: -0.12em -0.19em;
 }
 
+.club-copy h2 > .film-line:last-child {
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
+  padding-block-end: 0.26em;
+  margin-block-end: -0.26em;
+}
+
 .film-line > [data-enter] {
   display: block;
 }
