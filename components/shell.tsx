@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { Arrow, Bag, Boo, Drips, MenuMark, Wordmark } from "./art";
+import { ExpressiveBoo } from "./expressive-boo";
 import { brandTagline } from "../lib/brand";
 import { ActionLabel } from "./action";
 import { useCart } from "./store";
@@ -300,7 +301,7 @@ export function Footer() {
       <div className="foot-top">
         <div className="foot-intro">
           <div className="foot-mascot">
-            <Boo wink />
+            <ExpressiveBoo />
             <p>
               “Hi. I’m Boo.
               <br />

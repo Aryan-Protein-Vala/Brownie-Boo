@@ -666,3 +666,42 @@
     bottom: clamp(24px, 6vw, 39px);
   }
 }
+
+.expressive-boo {
+  display: block;
+  min-width: 0;
+}
+
+.foot-mascot .expressive-boo {
+  flex: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .expressive-boo .boo-wink {
+    animation: boo-lid 0.16s var(--ink-ease) both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .boo-blush {
+    animation: boo-blush-in 0.24s ease-out both;
+  }
+}
+
+@keyframes boo-lid {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes boo-blush-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

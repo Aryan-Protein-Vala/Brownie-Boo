@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
-import { Arrow, BiteEdge, Boo, Drips, Spark } from "../components/art";
+import { Arrow, BiteEdge, Drips, Spark } from "../components/art";
+import { ExpressiveBoo } from "../components/expressive-boo";
 import { Waitlist } from "../components/forms";
 import { Family, Hero, Texture } from "../components/home-motion";
 import { HomeFilm } from "../components/home-film";
@@ -207,7 +208,7 @@ export default async function Home({
           )}
         </div>
         <figure className="club-boo">
-          <Boo wink />
+          <ExpressiveBoo />
           <figcaption>I’m small. My personality isn’t.</figcaption>
         </figure>
       </section>

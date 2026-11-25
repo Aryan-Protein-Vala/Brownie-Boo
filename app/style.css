@@ -1034,11 +1034,6 @@ textarea:focus-visible {
 .club-boo svg {
   width: min(82%, 430px);
   margin: auto;
-  transform: rotate(10deg);
-  transition: transform var(--mid) var(--ease);
-}
-.club-boo:hover svg {
-  transform: rotate(-9deg) translateY(-8px);
 }
 .club-boo figcaption {
   display: inline-block;
