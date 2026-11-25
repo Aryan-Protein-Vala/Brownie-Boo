@@ -1,64 +1,81 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Boo, type BooExpression } from "./art";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+} from "react";
+import { Boo } from "./art";
+import { booReactions, type BooExpression } from "./boo-face";
 
-const routine: { face: BooExpression; hold: number }[] = [
-  { face: "smile", hold: 680 },
-  { face: "wink", hold: 370 },
-  { face: "smile", hold: 850 },
-  { face: "shy", hold: 1450 },
-  { face: "grin", hold: 1050 },
-  { face: "smile", hold: 2200 },
-];
+type Reaction = (typeof booReactions)[number];
 
 export function ExpressiveBoo() {
-  const stage = useRef<HTMLSpanElement>(null);
   const [expression, setExpression] = useState<BooExpression>("smile");
+  const timer = useRef<number | undefined>(undefined);
+  const remaining = useRef<Reaction[]>([]);
+  const previous = useRef<Reaction | undefined>(undefined);
 
-  useEffect(() => {
-    const element = stage.current;
-    if (!element) return;
-    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-    let timer: number | undefined;
-    let visible = false;
-
-    function play(index: number) {
-      const beat = routine[index];
-      setExpression(beat.face);
-      timer = window.setTimeout(
-        () => play((index + 1) % routine.length),
-        beat.hold,
-      );
-    }
-
-    function update() {
-      window.clearTimeout(timer);
-      if (visible && !document.hidden && !reducedMotion.matches) play(0);
-      else setExpression("smile");
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        visible = entry.intersectionRatio >= 0.45;
-        update();
-      },
-      { threshold: 0.45 },
-    );
-
-    observer.observe(element);
-    document.addEventListener("visibilitychange", update);
-    reducedMotion.addEventListener("change", update);
-    return () => {
-      window.clearTimeout(timer);
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", update);
-      reducedMotion.removeEventListener("change", update);
-    };
+  const reset = useCallback(() => {
+    window.clearTimeout(timer.current);
+    timer.current = undefined;
+    setExpression("smile");
   }, []);
 
+  useEffect(() => {
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    const resetWhenHidden = () => {
+      if (document.hidden) reset();
+    };
+    reducedMotion.addEventListener("change", reset);
+    document.addEventListener("visibilitychange", resetWhenHidden);
+    window.addEventListener("blur", reset);
+
+    return () => {
+      window.clearTimeout(timer.current);
+      reducedMotion.removeEventListener("change", reset);
+      document.removeEventListener("visibilitychange", resetWhenHidden);
+      window.removeEventListener("blur", reset);
+    };
+  }, [reset]);
+
+  function playReaction() {
+    if (remaining.current.length === 0) remaining.current = [...booReactions];
+    const choices = remaining.current.filter(
+      (face) => face !== previous.current,
+    );
+    const face = choices[Math.floor(Math.random() * choices.length)];
+
+    remaining.current = remaining.current.filter(
+      (candidate) => candidate !== face,
+    );
+    previous.current = face;
+    setExpression(face);
+    timer.current = window.setTimeout(playReaction, 1100 + Math.random() * 700);
+  }
+
+  function start(event: PointerEvent<HTMLSpanElement>) {
+    if (
+      event.pointerType === "touch" ||
+      event.buttons !== 0 ||
+      timer.current !== undefined ||
+      document.hidden ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
+
+    playReaction();
+  }
+
   return (
-    <span className="expressive-boo" ref={stage}>
+    <span
+      className="expressive-boo"
+      onPointerEnter={start}
+      onPointerLeave={reset}
+      onPointerCancel={reset}
+    >
       <Boo expression={expression} />
     </span>
   );

@@ -1031,9 +1031,12 @@ textarea:focus-visible {
   position: relative;
   align-self: center;
 }
-.club-boo svg {
+.club-boo .expressive-boo {
   width: min(82%, 430px);
-  margin: auto;
+  margin-inline: auto;
+}
+.club-boo svg {
+  width: 100%;
 }
 .club-boo figcaption {
   display: inline-block;
@@ -2107,7 +2110,7 @@ textarea:focus-visible {
     gap: 2rem;
     padding-bottom: 3.65rem;
   }
-  .club-boo svg {
+  .club-boo .expressive-boo {
     width: min(74%, 275px);
   }
   .club-boo figcaption {

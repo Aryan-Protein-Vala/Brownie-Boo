@@ -1,5 +1,6 @@
 import type { SVGProps } from "react";
 import { wordmarkPaths } from "../lib/wordmark";
+import { BooFace, type BooExpression } from "./boo-face";
 
 export function Arrow() {
   return (
@@ -52,8 +53,6 @@ export function Spark(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export type BooExpression = "smile" | "wink" | "shy" | "grin";
 
 export function Boo({
   wink = false,
@@ -139,71 +138,7 @@ export function Boo({
         strokeLinecap="round"
         opacity=".8"
       />
-      {face === "shy" ? (
-        <g fill="none" strokeLinecap="round">
-          <path
-            d="M92 125q5 9 14 6m45 1q8 5 15-4"
-            stroke="#fff1e9"
-            strokeWidth="4.5"
-          />
-          <path d="M125 153q6 3 11-1" stroke="#fff1e9" strokeWidth="3.5" />
-        </g>
-      ) : face === "grin" ? (
-        <>
-          <path
-            d="M91 128q8-12 17 0m43 1q9-12 17 1"
-            stroke="#fff1e9"
-            strokeWidth="4.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <path
-            d="M113 142q16 9 32-2c-3 16-21 22-32 2Z"
-            fill="#fff1e9"
-            stroke="#fff1e9"
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-          />
-        </>
-      ) : (
-        <>
-          <ellipse cx="99" cy="126" rx="5.2" ry="9" fill="#fff1e9" />
-          {face === "wink" ? (
-            <path
-              className="boo-wink"
-              d="m151 125 9-4 8 4"
-              fill="none"
-              stroke="#fff1e9"
-              strokeWidth="4.5"
-              strokeLinecap="round"
-            />
-          ) : (
-            <ellipse cx="160" cy="127" rx="5.2" ry="9" fill="#fff1e9" />
-          )}
-          <path
-            d="M119 144q11 12 23-1"
-            stroke="#fff1e9"
-            strokeWidth="4"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </>
-      )}
-      <ellipse cx="82" cy="142" rx="9" ry="4" fill="#e282a4" />
-      <ellipse cx="177" cy="145" rx="9" ry="4" fill="#e282a4" />
-      {face === "shy" && (
-        <g
-          className="boo-blush"
-          fill="none"
-          stroke="#f6a6c3"
-          strokeLinecap="round"
-        >
-          <path
-            d="m72 146 4-9m3 12 5-11m3 11 5-8m75 9 4-9m3 12 5-11m3 11 5-8"
-            strokeWidth="2.8"
-          />
-        </g>
-      )}
+      <BooFace key={face} expression={face} />
       <path
         d="m232 43 10-13m2 31 15-4M46 31l-8-9"
         fill="none"

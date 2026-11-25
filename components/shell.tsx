@@ -305,7 +305,7 @@ export function Footer() {
             <p>
               “Hi. I’m Boo.
               <br />
-              Eat my relatives.”
+              Here for the crumbs.”
             </p>
           </div>
           <SiteLink className="foot-club" href="/early-access">

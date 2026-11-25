@@ -673,6 +673,7 @@
 }
 
 .foot-mascot .expressive-boo {
+  --boo-doodle: #f3aacb;
   flex: none;
 }
 
@@ -683,8 +684,9 @@
     transform-origin: center;
   }
 
-  .boo-blush {
-    animation: boo-blush-in 0.24s ease-out both;
+  .boo-blush,
+  .boo-doodle {
+    animation: boo-ink-in 0.24s ease-out both;
   }
 }
 
@@ -697,7 +699,7 @@
   }
 }
 
-@keyframes boo-blush-in {
+@keyframes boo-ink-in {
   from {
     opacity: 0;
   }
