@@ -1,0 +1,414 @@
+.page {
+  --proof-paper: #fff1f6;
+  --proof-plum: #290c22;
+  --proof-pink: #f3aacb;
+  --proof-rule: #300f2740;
+  background: var(--proof-paper);
+  color: var(--ink);
+  padding: clamp(2.75rem, 7vw, 7rem) var(--gutter) clamp(4rem, 8vw, 8rem);
+}
+
+.intro,
+.comparison,
+.directions {
+  max-width: 81rem;
+  margin-inline: auto;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(13rem, 1fr);
+  align-items: end;
+  gap: 1.5rem 3rem;
+  margin-bottom: clamp(2.8rem, 6vw, 5.5rem);
+}
+
+.kicker,
+.proofLabel,
+.stripCaption,
+.group h3 {
+  font-weight: 780;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.intro h1 {
+  margin-top: 0.85rem;
+  font-size: clamp(3rem, 7.1vw, 7.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.intro > p {
+  max-width: 31ch;
+  font-size: clamp(1rem, 1.5vw, 1.32rem);
+}
+
+.comparison,
+.directions {
+  scroll-margin-top: 1.25rem;
+}
+
+.sectionHeader {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem 1.5rem;
+}
+
+.sectionHeader h2 {
+  font-size: clamp(1.55rem, 3vw, 2.5rem);
+}
+
+.sectionHeader a,
+.returnLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  font-size: 0.9rem;
+  font-weight: 750;
+  min-height: 2.75rem;
+  background: url("/art/sketch-rule.svg") left calc(50% + 0.8rem) / 100% 3px no-repeat;
+}
+
+.sectionHeader a svg,
+.returnLink svg,
+.optionAction svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.sectionHeader a[data-arrow="down"] svg {
+  rotate: 90deg;
+}
+
+.sectionHeader a[data-arrow="up"] svg,
+.returnLink svg {
+  rotate: -90deg;
+}
+
+.sectionHeader a:hover,
+.returnLink:hover {
+  color: #803156;
+}
+
+.proofs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.35rem, 1.2vw, 1rem);
+}
+
+.proof {
+  min-width: 0;
+}
+
+.proofLabel {
+  min-height: 2.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.proofBoard,
+.proofStrip,
+.optionArt {
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  color: var(--mark-ink);
+}
+
+[data-tone="plum"].proofBoard {
+  --surface: var(--proof-plum);
+  --mark-ink: var(--proof-pink);
+  --mark-brownie: var(--proof-paper);
+  --mark-boo: var(--proof-pink);
+}
+
+[data-tone="pink"]:is(.proofStrip, .optionArt) {
+  --surface: #f7c8da;
+  --mark-ink: var(--proof-plum);
+  --mark-brownie: #762f4f;
+  --mark-boo: var(--proof-plum);
+}
+
+.proofBoard {
+  width: 100%;
+  aspect-ratio: 1.65;
+  min-height: 7rem;
+  padding: clamp(0.4rem, 2vw, 1.5rem);
+  border-radius: 10px 12px 3px 4px / 11px 8px 3px 6px;
+}
+
+.proofStrip {
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  min-height: 4.35rem;
+  margin-top: 0.25rem;
+  padding: 0 0.9rem;
+  justify-items: start;
+  border-radius: 4px 3px 10px 12px / 6px 3px 11px 8px;
+}
+
+.stripCaption {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.proofStrip .logo {
+  width: 5.5rem;
+}
+
+.currentMark {
+  display: grid;
+  width: 62%;
+  max-width: 21rem;
+  place-items: center;
+}
+
+.page .currentMark > :global(.wordmark) {
+  width: 89%;
+}
+
+.proofStrip .currentMark {
+  width: 5.5rem;
+}
+
+.proofStrip .currentMark > :global(.wordmark) {
+  width: 60%;
+}
+
+.logo {
+  width: 86%;
+  max-width: 30rem;
+  height: auto;
+  overflow: visible;
+  display: block;
+  fill: currentColor;
+  font-family: Bricolage, Arial, sans-serif;
+}
+
+.boo {
+  font-weight: 800;
+  letter-spacing: -0.075em;
+}
+
+.script {
+  font-family: Instrument, Georgia, serif;
+  font-style: italic;
+  letter-spacing: -0.024em;
+}
+
+.solid {
+  fill: currentColor;
+  fill-rule: evenodd;
+}
+
+.reversed {
+  fill: var(--surface);
+}
+
+.stroke,
+.cut {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cut {
+  stroke: var(--surface);
+}
+
+.selection {
+  margin-top: 1rem;
+  max-width: 70ch;
+  min-height: 3.2rem;
+  font-size: 1rem;
+}
+
+.directions {
+  margin-top: clamp(3rem, 6vw, 6rem);
+}
+
+.group {
+  margin-top: 1.7rem;
+}
+
+.group + .group {
+  margin-top: 2.6rem;
+}
+
+.group h3 {
+  margin-bottom: 0.85rem;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.options li {
+  display: flex;
+  min-width: 0;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: 1px solid var(--proof-rule);
+  border-radius: 10px 12px 9px 11px / 11px 8px 12px 8px;
+  text-align: left;
+  padding: 0;
+  overflow: hidden;
+  transition: background-color var(--fast) ease, border-color var(--fast) ease;
+}
+
+.option:hover,
+.option[aria-pressed="true"] {
+  background: #ffe1ec;
+  border-color: var(--proof-plum);
+}
+
+.option:focus-visible,
+.sectionHeader a:focus-visible,
+.returnLink:focus-visible {
+  outline: 2px solid var(--proof-plum);
+  outline-offset: 3px;
+}
+
+.optionArt {
+  width: 100%;
+  aspect-ratio: 1.9;
+  transition: background-color var(--fast) ease;
+}
+
+.optionArt .logo {
+  width: 87%;
+}
+
+.option:hover .optionArt,
+.option[aria-pressed="true"] .optionArt {
+  --surface: var(--proof-pink);
+}
+
+.optionDetails {
+  padding: 0.9rem 1rem 0.75rem;
+}
+
+.optionName {
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.pick {
+  font: italic 1rem Instrument, Georgia, serif;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+
+.optionNote {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.optionAction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  padding: 0.65rem 1rem;
+  margin-top: auto;
+  border-top: 1px solid var(--proof-rule);
+  font-size: 0.8rem;
+  font-weight: 800;
+  min-height: 2.75rem;
+}
+
+.optionAction svg {
+  rotate: -32deg;
+  transition: translate var(--fast) ease;
+}
+
+.option:hover .optionAction svg {
+  translate: 2px -2px;
+}
+
+.returnLink {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .proofStrip {
+    min-height: 3.9rem;
+    padding-inline: 0.55rem;
+  }
+
+  .proofStrip :is(.logo, .currentMark) {
+    width: 4.25rem;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .option {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+  }
+
+  .optionArt {
+    grid-row: span 2;
+    height: 100%;
+  }
+
+  .optionDetails {
+    padding: 0.7rem 0.7rem 0.55rem;
+  }
+
+  .optionAction {
+    padding-inline: 0.7rem;
+  }
+
+  .optionName {
+    font-size: 1.12rem;
+  }
+
+  .optionNote {
+    font-size: 0.83rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .proofStrip {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 0.28rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option,
+  .optionArt,
+  .optionAction svg {
+    transition: none;
+  }
+}
