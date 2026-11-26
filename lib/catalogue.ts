@@ -159,51 +159,51 @@ export const variants = [
 
 export const questions = [
   [
-    "Is a sugar-free Boo on the way?",
-    "A sugar-free chocolate brownie is in development. We’ll publish verified nutrition and the final ingredients before orders open.",
+    "A sugar-free Boo? What’s the plot?",
+    "A sugar-free chocolate brownie is in development. We want it to taste like dessert you’d hide from your flatmates. We’ll publish verified nutrition and the final ingredients before orders open.",
   ],
   [
-    "Where are the protein numbers?",
-    "We’re putting the numbers through their final checks. Verified nutrition goes up before orders open. The 50 g, 200 g and 250 g labels are brownie weights.",
+    "Where are the protein numbers? My calculator is awake.",
+    "We’ll publish verified nutrition for each pack before orders open. The 50 g, 200 g and 250 g labels are brownie weights. Your calculator can take the afternoon off.",
   ],
   [
-    "Wait, what’s different about the three Boos?",
-    "The Original Boo uses soy and peanut proteins. Double Trouble uses soy, whey and peanut proteins. Boujee Boo uses whey and milk proteins.",
+    "Three Boos. What’s everybody bringing?",
+    "The Original Boo brings soy and peanut proteins. Double Trouble brings soy, whey and peanut proteins. Boujee Boo brings whey and milk proteins. For once, everyone did their part of the group project.",
   ],
   [
-    "Are the brownies vegetarian?",
-    "The named protein sources come from plants or dairy. Final ingredient lists and vegetarian labelling are still being confirmed.",
+    "Vegetarian? The group chat wants receipts.",
+    "Our named protein sources come from plants or dairy. We’re still confirming the final ingredients and vegetarian labelling. Please hold while the ingredients finish their paperwork.",
   ],
   [
-    "What allergens do they contain?",
-    "The Original Boo contains soy and peanuts. Double Trouble contains soy, peanuts and milk. Boujee Boo contains milk. Final labels will confirm the full allergen and cross-contact information.",
+    "Allergen roll call. What’s in each Boo?",
+    "The Original Boo contains soy and peanuts. Double Trouble contains soy, peanuts and milk. Boujee Boo contains milk. The final labels will confirm all allergens and cross-contact details. The tiny print gets main character treatment here.",
   ],
   [
-    "Where do I stash my brownies?",
-    "The final wrapper will have storage instructions. Your hiding spot is between you and your conscience.",
+    "Where do I stash these from my flatmates?",
+    "Storage instructions will be on the final wrapper. After that, your hiding spot is between you and your conscience.",
   ],
   [
-    "How long do these keep? Hypothetically.",
-    "Shelf life is being validated. Use the date and instructions on the final pack when available.",
+    "How long do they keep? Be honest, I’m hoarding.",
+    "We’re still validating shelf life. Use the date and storage instructions on the final pack when they’re available. “I hid it well” is an excellent alibi and a terrible expiry date.",
   ],
   [
-    "What’s a drop, and is it dramatic?",
-    "A drop is a scheduled batch of brownies. Once it’s confirmed, the Drops page gets the lineup, release date and dispatch details. That’s the whole plot.",
+    "What’s a drop? Should I be dramatic?",
+    "A drop is a scheduled batch of brownies. Once it’s confirmed, the Drops page gets the lineup, release date and dispatch details. Rehearsing a dramatic gasp is entirely up to you.",
   ],
   [
-    "How do I get the brownie gossip first?",
-    "Join the Boo Club with your email to register interest in upcoming drops and restocks. Release details will be shared when confirmed.",
+    "How do I get on the brownie gossip list?",
+    "Join the Boo Club with your email for drop and restock updates. We’ll share release details once they’re confirmed. Nobody’s adding you to a group chat called “Final FINAL Plans.”",
   ],
   [
-    "When will my order arrive?",
-    "Dispatch estimates and delivery regions will be published with confirmed drops. Ordering is currently closed.",
+    "When will my brownies show up? I’m pacing.",
+    "Ordering is still closed. We’ll post delivery regions and dispatch estimates with each confirmed drop. You can give the doorbell a day off.",
   ],
   [
-    "Can I see all three Boos at once?",
-    "Yes. The First Bite Trio brings all three together. In the Boo Box preview, you choose who gets each seat.",
+    "Can I get all three Boos in one box? Asking for myself.",
+    "The First Bite Trio gets all three in one box. In the Boo Box preview, you pick who gets each seat. Nobody has to pretend to get along at dinner.",
   ],
   [
-    "Can I cancel or modify my order?",
-    "Order changes, cancellations and refund terms will be available before checkout opens.",
+    "Can I change or cancel an order? I panic-click.",
+    "We’ll publish order changes, cancellations and refund terms before checkout opens. Until then, you can edit your preview bag as often as your heart changes its mind.",
   ],
 ];
