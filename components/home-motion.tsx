@@ -168,11 +168,6 @@ export function Family() {
         const distance = Math.max(-1, Math.min(1, index - offset));
         panel.style.setProperty("--panel-shift", `${distance * 10}%`);
         panel.style.setProperty("--panel-spin", `${distance * 11}deg`);
-        const flatten = Math.max(0, (distance - 0.72) / 0.28);
-        panel.style.setProperty(
-          "--seam-scale",
-          String(1 - flatten ** 2 * (3 - 2 * flatten)),
-        );
       }
       const next = Math.round(index);
       if (current !== next) {
@@ -258,9 +253,11 @@ export function Family() {
                 data-panel={index}
               >
                 {index > 0 && (
-                  <Drips className="section-drip family-stacked-edge" />
+                  <>
+                    <Drips className="section-drip family-stacked-edge" />
+                    <FamilySeam />
+                  </>
                 )}
-                {index < products.length - 1 && <FamilySeam />}
                 <div className="family-panel-inner">
                   <div className="family-copy">
                     <h3>

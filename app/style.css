@@ -625,6 +625,8 @@ textarea:focus-visible {
 }
 @media (min-width: 820px) and (min-height: 540px) and (prefers-reduced-motion: no-preference) {
   .family[data-motion] {
+    --family-seam-width: clamp(26px, 3.25vw, 53px);
+    --family-step: calc(100% + var(--family-seam-width));
     height: calc(100svh + min(123vw, 1650px));
   }
   .family[data-motion] .family-sticky {
@@ -637,16 +639,16 @@ textarea:focus-visible {
   .family[data-motion] .family-track {
     height: 100%;
     display: flex;
-    transform: translate3d(calc(-200% * var(--slide)), 0, 0);
+    transform: translate3d(calc(-2 * var(--family-step) * var(--slide)), 0, 0);
     will-change: transform;
   }
   .family[data-motion] .family-panel {
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 0 0 var(--family-step);
     min-height: 0;
     height: 100%;
   }
   .family[data-motion] .family-panel-inner {
+    width: calc(100% - var(--family-seam-width));
     padding-top: 2rem;
     padding-bottom: 4.9rem;
     height: 100%;
