@@ -159,6 +159,10 @@ export const variants = [
 
 export const questions = [
   [
+    "Is a sugar-free Boo on the way?",
+    "A sugar-free chocolate brownie is in development. We’ll publish verified nutrition and the final ingredients before orders open.",
+  ],
+  [
     "Where are the protein numbers?",
     "We’re putting the numbers through their final checks. Verified nutrition goes up before orders open. The 50 g, 200 g and 250 g labels are brownie weights.",
   ],

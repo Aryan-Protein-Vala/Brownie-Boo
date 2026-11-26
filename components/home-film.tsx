@@ -36,10 +36,10 @@ export function HomeFilm({ children }: { children: ReactNode }) {
 
         const bite = home.querySelector<HTMLElement>(".film-bite");
         const split = home.querySelector<HTMLElement>(".film-break");
-        const scale = home.querySelector<HTMLElement>(".sizes");
+        const reels = home.querySelector<HTMLElement>(".community-reels");
         const box = home.querySelector<HTMLElement>(".film-box");
         const finale = home.querySelector<HTMLElement>(".film-finale");
-        if (!bite || !split || !scale || !box || !finale) return;
+        if (!bite || !split || !reels || !box || !finale) return;
 
         const cleanup: (() => void)[] = [];
         home.dataset.film = conditions.stage ? "staged" : "flow";
@@ -115,12 +115,12 @@ export function HomeFilm({ children }: { children: ReactNode }) {
                 0.64,
               );
           }
-          const sizeTitle = scale.querySelectorAll<HTMLElement>("[data-enter]");
-          const sizeTitleStart = { opacity: 0, yPercent: 124 };
-          gsap.set(sizeTitle, sizeTitleStart);
+          const reelTitle = reels.querySelectorAll<HTMLElement>("[data-enter]");
+          const reelTitleStart = { opacity: 0, yPercent: 124 };
+          gsap.set(reelTitle, reelTitleStart);
           texture.fromTo(
-            sizeTitle,
-            sizeTitleStart,
+            reelTitle,
+            reelTitleStart,
             {
               opacity: 1,
               yPercent: 0,
@@ -131,6 +131,21 @@ export function HomeFilm({ children }: { children: ReactNode }) {
             },
             0.74,
           );
+          const stack = reels.querySelector(".reel-stack");
+          if (stack) {
+            texture.fromTo(
+              stack,
+              { yPercent: 22, rotate: -9, scale: 0.82 },
+              {
+                yPercent: 0,
+                rotate: 0,
+                scale: 1,
+                duration: 0.27,
+                ease: "power2.out",
+              },
+              0.61,
+            );
+          }
           texture.to({}, { duration: 0.055 }, 0.945);
 
           function focusBite(event: FocusEvent) {
@@ -142,12 +157,12 @@ export function HomeFilm({ children }: { children: ReactNode }) {
               !trigger
             )
               return;
-            const onScale = scale?.contains(target);
+            const onReels = reels?.contains(target);
             if (
-              (onScale && trigger.progress < 0.92) ||
-              (!onScale && trigger.progress > 0.44)
+              (onReels && trigger.progress < 0.92) ||
+              (!onReels && trigger.progress > 0.44)
             ) {
-              const position = onScale ? 0.95 : 0.33;
+              const position = onReels ? 0.95 : 0.33;
               scrollToScene(
                 trigger.start + position * (trigger.end - trigger.start),
                 true,
@@ -285,7 +300,7 @@ export function HomeFilm({ children }: { children: ReactNode }) {
         reveal(split, split, "top 64%");
         reveal(box, box, "top 72%");
         const club = home.querySelector<HTMLElement>(".club");
-        if (!conditions.stage) reveal(scale, scale, "top 78%");
+        if (!conditions.stage) reveal(reels, reels, "top 78%");
         if (club) {
           reveal(club, club, "top 77%");
           const mascot = club.querySelector("figure");

@@ -140,7 +140,189 @@
   min-height: 0;
 }
 
-.home-film[data-film="staged"] .sizes {
+.community-reels {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  background: var(--lilac);
+  padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+}
+
+.community-reels > .drips {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: clamp(27px, 4.9vw, 64px);
+  color: #341720;
+  pointer-events: none;
+}
+
+.reel-copy .tag {
+  margin-bottom: 1rem;
+}
+
+.reel-copy h2 {
+  font-size: clamp(3.65rem, 6.65vw, 7.75rem);
+}
+
+.reel-copy h2 em {
+  font-size: 0.87em;
+}
+
+.reel-copy > p:last-child {
+  margin-top: 1.2rem;
+  max-width: 34ch;
+}
+
+.reel-demo {
+  justify-self: center;
+  width: min(100%, 525px);
+}
+
+.reel-stack {
+  position: relative;
+  isolation: isolate;
+  height: clamp(255px, 49svh, 460px);
+}
+
+.reel-frame {
+  --reel-x: 0%;
+  --reel-y: 0%;
+  --reel-angle: -3deg;
+  --reel-scale: 1;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+  aspect-ratio: 9 / 15;
+  overflow: hidden;
+  background: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 17px 21px 15px 19px / 21px 16px 20px 17px;
+  box-shadow: 0.34rem 0.48rem 0 #300f2733;
+  transform: translate(calc(-50% + var(--reel-x)), var(--reel-y))
+    rotate(var(--reel-angle)) scale(var(--reel-scale));
+  transition: transform 0.58s var(--paper-crease);
+}
+
+.reel-frame[data-reel-position="1"],
+.reel-frame[data-reel-position="2"] {
+  --reel-y: 4%;
+  --reel-scale: 0.78;
+  z-index: 1;
+}
+
+.reel-frame[data-reel-position="1"] {
+  --reel-x: 43%;
+  --reel-angle: 13deg;
+}
+
+.reel-frame[data-reel-position="2"] {
+  --reel-x: -43%;
+  --reel-angle: -15deg;
+}
+
+.reel-frame > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel-frame figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 0.27rem;
+  padding: 0.7rem 0.8rem 0.8rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.reel-frame figcaption span {
+  color: var(--pink);
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.reel-frame figcaption strong {
+  font-size: clamp(0.94rem, 2vw, 1.35rem);
+  line-height: 1.03;
+}
+
+.reel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.reel-controls output {
+  font-size: 0.86rem;
+  font-weight: 760;
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-step {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #300f277d;
+  border-radius: 48% 52% 43% 48% / 50% 45% 53% 47%;
+  padding: 0;
+  background: transparent;
+  transition: background 0.24s var(--paper-crease);
+}
+
+.reel-step:is(:hover, :focus-visible) {
+  background: var(--paper);
+}
+
+.reel-step svg {
+  transition: translate 0.34s var(--paper-crease);
+}
+
+.reel-step:is(:hover, :focus-visible) svg {
+  translate: 2px 0;
+}
+
+.reel-prev svg {
+  scale: -1 1;
+}
+
+.reel-prev:is(:hover, :focus-visible) svg {
+  translate: -2px 0;
+}
+
+@media (max-width: 680px) {
+  .community-reels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.15rem;
+  }
+
+  .reel-copy h2 {
+    font-size: clamp(2.85rem, 12vw, 4.8rem);
+  }
+
+  .reel-copy > p:last-child {
+    margin-top: 0.8rem;
+  }
+
+  .reel-stack {
+    height: clamp(175px, 34svh, 290px);
+  }
+}
+
+.home-film[data-film="staged"] .community-reels {
   --wave-height: clamp(65px, 10vw, 125px);
   position: absolute;
   inset: 0;
@@ -153,7 +335,7 @@
   );
 }
 
-.home-film[data-film="staged"] .sizes .drips {
+.home-film[data-film="staged"] .community-reels .drips {
   display: none;
 }
 
@@ -166,10 +348,6 @@
   left: 0;
   fill: var(--lilac);
   pointer-events: none;
-}
-
-.home-film .sizes-title .film-line:first-child {
-  max-width: 9ch;
 }
 
 .film-box {
@@ -627,8 +805,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .home-film .text-link:hover svg,
-  .home-film .size-row:hover svg {
+  .home-film .text-link:hover svg {
     animation: fold-link-arrow 0.51s var(--paper-crease) both;
   }
 }

@@ -217,8 +217,9 @@ export default async function Info({ params }: Props) {
               <h2>The actual numbers</h2>
               <p>
                 We’re confirming exact values, final ingredient lists,
-                cross-contact, storage and shelf life for each formulation.
-                We’ll share verified information before orders open.
+                cross-contact, storage and shelf life for each formulation. A
+                sugar-free recipe is in development. We’ll share verified
+                nutrition and ingredients before orders open.
               </p>
               <SiteLink href="/faq" className="text-link">
                 Read the FAQ <Arrow />

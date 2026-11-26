@@ -130,7 +130,6 @@
   }
 
   :is(
-    .size-row,
     .bag-line,
     .faq-list details,
     .ingredients-ledger > *,
@@ -147,7 +146,6 @@
   :is(
     .header-inner,
     .run-readout,
-    .size-row:nth-child(3),
     .bag-line:last-child,
     .faq-list details:last-of-type
   ) {
@@ -156,7 +154,6 @@
   }
 
   :is(
-    .size-row,
     .bag-line,
     .faq-list details,
     .ingredients-ledger > *,
@@ -169,7 +166,6 @@
   :is(
     .header-inner,
     .run-readout,
-    .size-row:nth-child(3),
     .bag-line:last-child,
     .faq-list details:last-of-type
   )::after,
@@ -192,7 +188,6 @@
   :is(
     .header-inner,
     .run-readout,
-    .size-row:nth-child(3),
     .bag-line:last-child,
     .faq-list details:last-of-type
   )::after {

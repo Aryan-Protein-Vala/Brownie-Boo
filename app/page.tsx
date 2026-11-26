@@ -1,12 +1,13 @@
 import { headers } from "next/headers";
 import { Arrow, BiteEdge, Drips, DropMeltMask, Spark } from "../components/art";
+import { CommunityReels } from "../components/community-reels";
 import { ExpressiveBoo } from "../components/expressive-boo";
 import { Waitlist } from "../components/forms";
 import { Family, Hero, Texture } from "../components/home-motion";
 import { HomeFilm } from "../components/home-film";
 import { BrownieRun } from "../components/brownie-run";
 import { SiteLink } from "../components/shell";
-import { art, packs, variants } from "../lib/catalogue";
+import { art, variants } from "../lib/catalogue";
 import { hasLocalServices } from "../lib/preview-mode";
 import { formSubmitEndpoint, hasCustomerForms } from "../lib/formsubmit";
 import "./home-film.css";
@@ -38,43 +39,29 @@ export default async function Home({
       <div className="film-bite">
         <div className="film-bite-stage">
           <Texture />
-          <section className="sizes">
+          <section
+            className="community-reels"
+            id="boo-reels"
+            aria-labelledby="boo-reels-title"
+          >
             <Drips />
             <BiteEdge />
-            <div className="sizes-title">
-              <p className="tag">Pick your portion</p>
-              <h2>
+            <div className="reel-copy">
+              <p className="tag">Boo on your feed</p>
+              <h2 id="boo-reels-title">
                 <span className="film-line">
-                  <span data-enter="up">Sometimes</span>
+                  <span data-enter="up">Post the bite.</span>
                 </span>
                 <span className="film-line">
-                  <em data-enter="down">size does matter.</em>
+                  <em data-enter="down">Get a cameo.</em>
                 </span>
               </h2>
-            </div>
-            <div className="size-options">
-              {packs.map(({ grams, name, note }, index) => (
-                <SiteLink
-                  className="size-row"
-                  href={`/shop?size=${grams}`}
-                  key={grams}
-                >
-                  <span
-                    aria-hidden="true"
-                    className={`size-cookie size-cookie-${index}`}
-                  ></span>
-                  <span className="size-name">
-                    {name}
-                    <small>{note}</small>
-                  </span>
-                  <strong>{grams} g</strong>
-                  <Arrow />
-                </SiteLink>
-              ))}
-              <p className="form-fine">
-                Grams are brownie weight. The emotional baggage is extra.
+              <p>
+                Tag Brownie Boo! in your Instagram Reel or X post. Your
+                first-bite face might end up right here. Dignity optional.
               </p>
             </div>
+            <CommunityReels />
           </section>
         </div>
       </div>
@@ -148,7 +135,8 @@ export default async function Home({
               <p>
                 The world already has enough people turning snacks into
                 homework. We made three fudgy brownies with three protein
-                blends. There’ll be no quiz.
+                blends. There’ll be no quiz. A sugar-free Boo is in development,
+                too.
               </p>
               <SiteLink className="text-link" href="/our-story">
                 Read our story <Arrow />
