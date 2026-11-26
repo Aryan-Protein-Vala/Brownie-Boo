@@ -3,12 +3,14 @@
 import { type ReactNode, useRef, useState } from "react";
 import { Arrow, Wordmark } from "../../components/art";
 import styles from "./logos.module.css";
-import studio from "./studio.module.css";
-import { StudioMark, studioDirections, type StudioDirection } from "./studio-marks";
 
-type LogoId = "crumb" | "dessert" | "split" | "double" | "after" | "face";
+type LogoId = "stack" | "one-line" | "bakery" | "crumb" | "dessert" | "split" | "double" | "after" | "face" | "sunday-best";
 type Direction = { id: LogoId; name: string; note: string };
-type Candidate = Direction | StudioDirection;
+const simpleWordmarks: Direction[] = [
+  { id: "stack", name: "Straight Stack", note: "A clean two-line wordmark with the original boo! lettering." },
+  { id: "one-line", name: "One Line", note: "Lowercase, compact, and easy to fit across a wrapper or header." },
+  { id: "bakery", name: "Bakery Type", note: "A classic serif stack with a little extra weight on Boo!" },
+];
 
 const originalLettering: Direction[] = [
   { id: "crumb", name: "Crumb Stamp", note: "A bitten brownie stamp with the original boo! inside." },
@@ -17,16 +19,18 @@ const originalLettering: Direction[] = [
 ];
 
 const newLettering: Direction[] = [
+  { id: "sunday-best", name: "Sunday Best", note: "A dressier dessert-counter mark with a sweeping B." },
   { id: "double", name: "Double Bite", note: "Two bites turn a brownie into a B. The full name sits alongside in block type." },
   { id: "after", name: "After Hours", note: "A loose, all-italic signature. Think late-night dessert menu." },
   { id: "face", name: "Snack Face", note: "A wink in a cracked brownie, with chunky new lettering underneath." },
 ];
 
 const groups = [
+  { title: "New wordmarks", directions: simpleWordmarks },
   { title: "Keep the original boo!", directions: originalLettering },
   { title: "Start with fresh lettering", directions: newLettering },
 ];
-const recommendation = studioDirections[0];
+const recommendation = simpleWordmarks[0];
 
 function Logo({ id }: { id: LogoId | "current" }) {
   if (id === "current") {
@@ -35,6 +39,21 @@ function Logo({ id }: { id: LogoId | "current" }) {
 
   return (
     <svg className={styles.logo} viewBox="0 0 320 176" aria-hidden="true">
+      {id === "stack" && <>
+        <text x="69" y="56" fontSize="38" fontWeight="700" letterSpacing="-1.4">brownie</text>
+        <text className={styles.boo} x="67" y="141" fontSize="103">boo!</text>
+      </>}
+      {id === "one-line" && (
+        <text x="160" y="105" textAnchor="middle" fontSize="45" fontWeight="660" letterSpacing="-1.65">
+          brownie <tspan fontWeight="800">boo!</tspan>
+        </text>
+      )}
+      {id === "bakery" && (
+        <g fontFamily="Georgia, serif" fontWeight="bold" textAnchor="middle">
+          <text x="160" y="70" fontSize="46" letterSpacing="-1.75">Brownie</text>
+          <text x="160" y="134" fontSize="77" letterSpacing="-3.3">Boo!</text>
+        </g>
+      )}
       {id === "crumb" && <>
         <path
           className={styles.solid}
@@ -85,6 +104,13 @@ function Logo({ id }: { id: LogoId | "current" }) {
         <path className={styles.stroke} strokeWidth="4" d="M102 37l-9-6m130-6 7-9m-1 17 11-4" />
         <text x="160" y="140" textAnchor="middle" fontSize="41" fontWeight="800" letterSpacing="-1.1">BROWNIE BOO!</text>
       </>}
+      {id === "sunday-best" && <>
+        <text x="157" y="37" fontSize="15" textAnchor="middle" fontWeight="680" letterSpacing="4.7">BROWNIE</text>
+        <path fillRule="evenodd" d="M81 59C64 57 52 63 48 74C46 79 47 83 45 84C42 85 41 80 43 75C49 62 61 55 80 54C101 51 126 50 131 65C135 78 122 88 106 92C127 92 134 101 130 114C126 131 105 141 84 143C61 145 48 139 49 128C50 120 58 114 66 115L65 117C60 118 57 122 57 127C56 134 65 137 75 135C84 119 93 81 96 62C92 60 86 59 81 59ZM111 62C109 73 106 83 104 90C114 88 118 80 119 73C120 67 117 63 111 62ZM103 94C98 114 91 130 84 136C99 134 112 125 115 112C118 101 113 95 103 94Z" />
+        <path fillRule="evenodd" d="M166 88C185 87 192 101 187 116C182 132 169 142 153 142C137 142 129 131 133 117C138 99 151 90 166 88ZM166 91C158 92 151 102 147 116C144 126 144 139 152 139C160 139 168 127 172 114C175 103 175 90 166 91ZM221 88C240 87 247 101 242 116C237 132 223 142 208 142C192 142 183 131 188 117C192 100 205 90 221 88ZM221 91C213 92 205 102 202 116C199 126 199 139 207 139C215 139 223 127 227 114C230 103 230 90 221 91Z" />
+        <path d="M181 101C191 105 200 99 204 94M67 142C94 156 149 153 175 147C203 140 220 142 231 148" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M261 68C263 57 268 53 275 54C281 54 282 59 280 66L260 119L257 118ZM258 125C264 125 267 130 265 135C263 140 256 143 252 140C247 137 247 133 250 129C252 127 255 125 258 125Z" />
+      </>}
     </svg>
   );
 }
@@ -105,27 +131,10 @@ function Proof({ label, children }: { label: string; children: ReactNode }) {
 }
 
 export function LogoProofs() {
-  const [featured, setFeatured] = useState<StudioDirection>(recommendation);
-  const [selected, setSelected] = useState<Candidate>(recommendation);
-  const [take, setTake] = useState(0);
+  const [selected, setSelected] = useState(recommendation);
   const comparison = useRef<HTMLElement>(null);
-  const stage = useRef<HTMLDivElement>(null);
 
-  function stageDirection(direction: StudioDirection) {
-    setFeatured(direction);
-    setTake((current) => current + 1);
-    const screen = stage.current;
-    if (!screen) return;
-
-    const { top, bottom } = screen.getBoundingClientRect();
-    const headerBottom = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
-    if (top < headerBottom || bottom > window.innerHeight) {
-      screen.focus({ preventScroll: true });
-      screen.scrollIntoView({ block: "start" });
-    }
-  }
-
-  function compare(direction: Candidate) {
+  function compare(direction: Direction) {
     setSelected(direction);
     const section = comparison.current;
     if (section) {
@@ -136,70 +145,25 @@ export function LogoProofs() {
 
   return (
     <>
-      <section className={studio.studio} id="studio" aria-labelledby="studio-title">
-        <div className={studio.screen} ref={stage} tabIndex={-1} role="img" aria-label={`${featured.name} logo preview`} data-mark={featured.id} data-playing={featured.motion && take > 0 ? "" : undefined}>
-          <StudioMark id={featured.id} key={featured.id + take} />
-        </div>
-        <div className={studio.caption}>
-          <div>
-            <h2 id="studio-title">{featured.name}</h2>
-            {featured.id === recommendation.id && <span className={studio.recommended}>My pick</span>}
-          </div>
-          <p>{featured.note}</p>
-          <div className={studio.controls}>
-            {featured.motion && (
-              <button className={`${studio.control} ${studio.playControl}`} type="button" onClick={() => setTake((current) => current + 1)}>
-                Play logo motion
-                <svg viewBox="0 0 20 20" aria-hidden="true" fill="none">
-                  <path d="M7 4.5Q11.4 6.8 15.2 10Q11.4 13 6.8 15.5Q7.1 10.2 7 4.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-                </svg>
-              </button>
-            )}
-            <button className={studio.control} type="button" onClick={() => compare(featured)}>Compare with current <Arrow /></button>
-          </div>
-        </div>
-        <div className={studio.index} aria-label="New logo directions" role="group">
-          {studioDirections.map((direction) => (
-            <button
-              className={studio.thumbButton}
-              key={direction.id}
-              type="button"
-              aria-pressed={featured.id === direction.id}
-              onClick={() => stageDirection(direction)}
-            >
-              <span className={studio.thumbnail} data-mark={direction.id}><StudioMark id={direction.id} /></span>
-              <span className={studio.thumbName}>
-                {direction.name}
-                {direction.motion && <span className={studio.thumbHint}>Motion</span>}
-              </span>
-            </button>
-          ))}
-        </div>
-      </section>
       <section className={styles.comparison} id="comparison" aria-labelledby="comparison-title" tabIndex={-1} ref={comparison}>
         <div className={styles.sectionHeader}>
           <h2 id="comparison-title">Side by side</h2>
-          <div className={styles.proofLinks}>
-            <a href="#studio" data-arrow="up">New studies <Arrow /></a>
-            <a href="#directions" data-arrow="down">First round <Arrow /></a>
-          </div>
+          <a href="#directions" data-arrow="down">See the options <Arrow /></a>
         </div>
         <div className={styles.proofs}>
           <Proof label="Current header logo"><Logo id="current" /></Proof>
-          <Proof label={selected.name}>
-            {"motion" in selected ? <StudioMark id={selected.id} /> : <Logo id={selected.id} />}
-          </Proof>
+          <Proof label={selected.name}><Logo id={selected.id} /></Proof>
         </div>
         <p className={styles.selection} role="status">
           <strong>{selected.id === recommendation.id ? "My pick · " : ""}{selected.name}.</strong>{" "}
           {selected.id === recommendation.id
-            ? "The joined o’s give it a silhouette you could spot across a shelf. It still reads at seal size, and the motion comes from the way the letters fit together."
+            ? "It keeps the familiar boo! and gives both lines room to breathe. It reads clearly on a wrapper or in the header."
             : selected.note}
         </p>
       </section>
       <section className={styles.directions} id="directions" aria-labelledby="directions-title">
         <div className={styles.sectionHeader}>
-          <h2 id="directions-title">The first round</h2>
+          <h2 id="directions-title">Logo options</h2>
           <a href="#comparison" data-arrow="up">Back to comparison <Arrow /></a>
         </div>
         <div role="group" aria-labelledby="directions-title">

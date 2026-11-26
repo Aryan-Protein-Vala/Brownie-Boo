@@ -4,7 +4,7 @@ import styles from "./logos.module.css";
 
 export const metadata: Metadata = {
   title: "The Logo Taste Test",
-  description: "Custom-lettered and animated Brownie Boo! logo studies alongside the current wordmark.",
+  description: "Compare Brownie Boo! wordmark options with the current logo.",
 };
 
 export default function LogosPage() {
@@ -15,7 +15,7 @@ export default function LogosPage() {
           <p className={styles.kicker}>Brownie Boo! / Logo studio</p>
           <h1>The logo <em>taste test.</em></h1>
         </div>
-        <p>Four new marks for the wrapper. Pick a design, play its motion where available, and see it next to the logo we use today.</p>
+        <p>Three new wordmarks for Brownie Boo! Pick one to see it next to the logo we use today.</p>
       </header>
       <LogoProofs />
     </div>
