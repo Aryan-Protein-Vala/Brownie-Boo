@@ -303,6 +303,11 @@
   transform-origin: 67% 53%;
 }
 
+.drop-melt-defs {
+  position: absolute;
+  pointer-events: none;
+}
+
 .home-film[data-film="staged"] .film-finale {
   height: calc(var(--film-stage) + clamp(740px, 126svh, 1200px));
 }
@@ -331,7 +336,7 @@
   --melt-pull: 0;
   z-index: 1;
   padding-block: 2rem;
-  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%, 100% 64%, 100% 29%);
+  clip-path: url(#story-drop-melt);
 }
 
 @media (max-width: 960px) {
@@ -669,6 +674,9 @@
     width: clamp(26px, 3.25vw, 53px);
     height: 100%;
     inset: 0 auto auto calc(100% - 2px);
+    transform: scaleX(var(--seam-scale, 1));
+    transform-origin: left center;
+    opacity: var(--seam-scale, 1);
     color: var(--family-paper);
     pointer-events: none;
   }

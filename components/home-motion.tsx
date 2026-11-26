@@ -157,10 +157,9 @@ export function Family() {
         1,
         section.offsetHeight - (window.innerHeight - offset),
       );
-      const progress = Math.min(
-        1,
-        Math.max(0, (offset - section.getBoundingClientRect().top) / span),
-      );
+      const travelled = offset - section.getBoundingClientRect().top;
+      // A rounded scroll position can land a fraction of a pixel short.
+      const progress = travelled >= span - 1 ? 1 : Math.max(0, travelled / span);
       if (progress === lastProgress) return;
       lastProgress = progress;
       section.style.setProperty("--slide", String(progress));
@@ -169,6 +168,11 @@ export function Family() {
         const distance = Math.max(-1, Math.min(1, index - offset));
         panel.style.setProperty("--panel-shift", `${distance * 10}%`);
         panel.style.setProperty("--panel-spin", `${distance * 11}deg`);
+        const flatten = Math.max(0, (distance - 0.72) / 0.28);
+        panel.style.setProperty(
+          "--seam-scale",
+          String(1 - flatten ** 2 * (3 - 2 * flatten)),
+        );
       }
       const next = Math.round(index);
       if (current !== next) {
@@ -232,7 +236,7 @@ export function Family() {
           <h2>
             Three Boos.
             <br />
-            <em>Zero boring bites.</em>
+            <em>All your type.</em>
           </h2>
         </div>
         <SiteLink href="/shop" className="text-link">

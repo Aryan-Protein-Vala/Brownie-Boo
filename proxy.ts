@@ -1,9 +1,18 @@
+import { randomInt } from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
+import { variants } from "./lib/catalogue";
 import { getOrAssignHero, HERO_COOKIE } from "./lib/local-store";
 import { hasLocalServices } from "./lib/preview-mode";
 
+const hostedHeroCookie = "boo_b_hosted_hero";
+
+function assignHostedHero(existing?: string) {
+  const saved = variants.find(({ id }) => id === existing);
+  const { id } = saved ?? variants[randomInt(variants.length)];
+  return { variant: id, value: id };
+}
+
 export function proxy(request: NextRequest) {
-  if (!hasLocalServices) return NextResponse.next();
   if (/^[A-J]$/i.test(request.nextUrl.searchParams.get("hero") ?? "")) {
     return NextResponse.next();
   }
@@ -13,16 +22,20 @@ export function proxy(request: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  const existing = request.cookies.get(HERO_COOKIE)?.value;
-  const assignment = getOrAssignHero(existing);
+  const cookie = hasLocalServices ? HERO_COOKIE : hostedHeroCookie;
+  const existing = request.cookies.get(cookie)?.value;
+  const assignment = hasLocalServices
+    ? getOrAssignHero(existing)
+    : assignHostedHero(existing);
   const headers = new Headers(request.headers);
   headers.set("x-boo-hero", assignment.variant);
   const response = NextResponse.next({ request: { headers } });
   response.headers.set("Cache-Control", "private, no-store");
   if (assignment.value !== existing) {
-    response.cookies.set(HERO_COOKIE, assignment.value, {
+    response.cookies.set(cookie, assignment.value, {
       httpOnly: true,
       sameSite: "lax",
+      secure: request.nextUrl.protocol === "https:",
       path: "/",
       maxAge: 60 * 60 * 24 * 365,
     });

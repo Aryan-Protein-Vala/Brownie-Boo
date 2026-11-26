@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, type ReactNode } from "react";
 import { scrollToScene } from "./smooth-scroll";
-import { biteEdgeStart } from "./art";
+import { biteEdgeStart, dropMeltStart } from "./art";
 
 function headerHeight() {
   return (
@@ -16,12 +16,6 @@ const biteRipple =
   "M0 62 C66 -2 106 6 132 76 C149 130 199 119 247 76 C289 39 337 21 374 78 C397 119 456 105 490 58 C533 -1 568 21 610 58 C655 102 702 114 736 48 C773 -6 816 11 857 42 C908 75 950 70 1000 24 V144 H0 Z";
 const biteEnd =
   "M0 29 C55 45 103 47 140 30 C181 11 211 15 252 26 C294 36 332 47 374 32 C414 13 450 15 491 27 C534 42 567 45 609 26 C659 4 697 22 734 30 C780 43 822 24 865 15 C915 4 951 13 1000 26 V144 H0 Z";
-
-const closedFold =
-  "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 64%, 100% 29%)";
-const middleFold =
-  "polygon(63% 0%, 100% 0%, 100% 100%, 54% 100%, 66% 64%, 50% 29%)";
-const openFold = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 64%, 0% 29%)";
 
 export function HomeFilm({ children }: { children: ReactNode }) {
   const film = useRef<HTMLDivElement>(null);
@@ -180,18 +174,27 @@ export function HomeFilm({ children }: { children: ReactNode }) {
 
           const paper = finale.querySelector<HTMLElement>(".story-feature");
           const drop = finale.querySelector<HTMLElement>(".drop-feature");
-          if (paper && drop) {
+          const melt = finale.querySelector("[data-drop-melt]");
+          if (paper && drop && melt) {
             const cut = track(finale);
             cut
-              .set(drop, { clipPath: closedFold }, 0)
-              .to(
-                drop,
-                { clipPath: middleFold, duration: 0.21, ease: "power2.in" },
+              .fromTo(
+                melt,
+                { attr: { transform: dropMeltStart } },
+                {
+                  attr: { transform: "translate(0.57 0) scale(1.12 1)" },
+                  duration: 0.21,
+                  ease: "power2.in",
+                },
                 0.19,
               )
               .to(
-                drop,
-                { clipPath: openFold, duration: 0.25, ease: "power3.out" },
+                melt,
+                {
+                  attr: { transform: "translate(-0.18 0) scale(0.82 1)" },
+                  duration: 0.25,
+                  ease: "power3.out",
+                },
                 0.4,
               )
               .fromTo(

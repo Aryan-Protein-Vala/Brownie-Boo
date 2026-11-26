@@ -11,7 +11,7 @@ Open [Site B](http://127.0.0.1:4173/). For the optimized server, run `npm run bu
 
 ## Hosted preview
 
-Vercel hosts the product pages, box builder, browser-local bag and arcade game. The hosted site uses the “Chocolate first” hero by default and accepts the same hero preview URLs. Paid checkout is disabled.
+Vercel hosts the product pages, box builder, browser-local bag and arcade game. The hosted homepage randomly assigns one of ten hero headlines per browser. An assignment cookie keeps it stable across visits. Links from individual campaigns can set a headline with `?hero=A` through `?hero=J` without changing the saved assignment. Paid checkout is disabled.
 
 Boo Club, first-batch interest, product restock and contact forms post to FormSubmit when `BOO_FORMSUBMIT_RECIPIENT` is set to the inbox address or its activated FormSubmit token. Configure the value in Vercel for production or in `.env.local` for local testing. The first submission triggers a confirmation email. Activate the inbox using that email to receive submissions.
 
@@ -23,7 +23,7 @@ Open [Staff](http://127.0.0.1:4173/admin) and use the key generated in `.local/a
 
 The bag and box builder let visitors save their picks on the device. Account forms write to the local database. Local waitlist, drop, restock and contact forms also use that database when no FormSubmit recipient is set. Tracking looks up existing order records by reference and email. The owner view manages all nine draft SKUs, batch dates and allocations, discount codes, product notes, and experiment weights. There are no live orders, reservations, payments or delivery integrations. Draft commercial and product information stays private. Public commerce requires approved product and business data, operational providers, and a separate release.
 
-The ten hero campaigns are available at `/?hero=A` through `/?hero=J`. These preview URLs skip new assignment and impression tracking. The homepage assigns active campaigns by weight and remembers the choice using a browser cookie. Campaigns G and J start paused pending final formulation and labelling review. The dashboard counts unique visitors assigned, exposed and clicked, plus sign-ups made through the local database.
+The ten hero campaigns are available at `/?hero=A` through `/?hero=J`. These preview URLs skip new assignment and impression tracking. The local preview assigns active campaigns by weight and remembers the choice using a browser cookie. The local preview starts with campaigns G and J paused. The dashboard counts unique visitors assigned, exposed and clicked, plus sign-ups made through the local database.
 
 ## Campaign art
 

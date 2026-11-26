@@ -9,9 +9,9 @@ export const products = [
     slug: "original",
     name: "The Original Boo",
     split: ["The Original", "Boo."],
-    blurb: "Your most reliable desk drawer colleague.",
+    blurb: "Survived another quick sync.",
     description:
-      "The meeting ran over. The bus didn’t show. At least the chocolate is here. This is the everyday Boo, with soy and peanut proteins.",
+      "The quick sync is somehow in its second season. Good thing your desk drawer has a fudgy chocolate brownie with soy and peanut proteins.",
     ingredients: "Soy protein and peanut protein",
     allergens: "Soy and peanuts",
     wrapper: "original-960",
@@ -22,9 +22,9 @@ export const products = [
     slug: "double-trouble",
     name: "Double Trouble",
     split: ["Double", "Trouble."],
-    blurb: "For days that came with a sequel.",
+    blurb: "Your side quest has side quests.",
     description:
-      "One crisis meeting is plenty. Three protein sources, on the other hand, work very nicely in a chocolate brownie.",
+      "You went out for toothpaste. Now you’re helping someone move. This chocolate brownie with soy, whey and peanut proteins is for the detour.",
     ingredients: "Soy protein, whey protein and peanut protein",
     allergens: "Soy, milk and peanuts",
     wrapper: "double-960",
@@ -35,9 +35,9 @@ export const products = [
     slug: "boujee",
     name: "Boujee Boo",
     split: ["Boujee", "Boo."],
-    blurb: "All dressed up for a Tuesday.",
+    blurb: "Dressed for a reservation. Eaten in socks.",
     description:
-      "All the drama of a velvet rope, right there in your hand. Our richest chocolate character with whey and milk proteins.",
+      "Looks like it has a table at eight. Tastes like rich chocolate. It’s a brownie with whey and milk proteins, and the dress code is whatever you’re wearing.",
     ingredients: "Whey protein and milk protein",
     allergens: "Milk",
     wrapper: "deluxe-960",
@@ -62,7 +62,7 @@ export const variants = [
     lead: "Bro, protein isn’t",
     tail: "a personality.",
     support:
-      "Put the shaker down. We made you a chocolate brownie with protein.",
+      "Put the shaker down. It’s starting to sound like a maraca. There’s protein in this fudgy chocolate brownie, too.",
     action: "Meet the Boos",
     href: "/shop",
   },
@@ -71,7 +71,7 @@ export const variants = [
     lead: "You’ve got enough",
     tail: "problems.",
     support:
-      "Protein shouldn’t be one. Here’s a chocolate brownie you can grab and go.",
+      "That forgotten load of laundry has a birthday now. A chocolate brownie with protein takes one thing off your list.",
     action: "Get First Bite",
     href: "/early-access",
   },
@@ -80,7 +80,7 @@ export const variants = [
     lead: "Group project?",
     tail: "Solo brownie.",
     support:
-      "No one replied to the group chat. At least you brought chocolate and protein.",
+      "Four people. One person doing the slides. One chocolate brownie with protein. Do the maths.",
     action: "Meet the Boos",
     href: "/shop",
   },
@@ -89,7 +89,7 @@ export const variants = [
     lead: "This meeting could’ve",
     tail: "been a brownie.",
     support:
-      "Your 9-to-5 just got a cheat code. Chocolate and protein for your desk drawer.",
+      "They said “quick sync” 47 minutes ago. Good thing your desk drawer has a fudgy chocolate brownie with protein.",
     action: "Shop the Good Stuff",
     href: "/shop",
   },
@@ -98,7 +98,7 @@ export const variants = [
     lead: "Chocolate first.",
     tail: "Protein plot twist.",
     support:
-      "Life comes with enough drama. Here’s a chocolate brownie with a heck of a lot of protein.",
+      "We put protein in a fudgy brownie. Your ex put “hey stranger” in the drafts.",
     action: "Meet the Boos",
     href: "/shop",
   },
@@ -107,7 +107,7 @@ export const variants = [
     lead: "Emotionally unavailable.",
     tail: "Nutritionally interesting.",
     support:
-      "A chocolate brownie with protein is ready when you are. What a concept.",
+      "They’ll text back in three to five business days. This chocolate brownie with protein is right here.",
     action: "Catch the Drop",
     href: "/drops",
   },
@@ -116,7 +116,7 @@ export const variants = [
     lead: "Red flags?",
     tail: "Read the ingredients.",
     support:
-      "Three chocolate brownies, three protein blends, and an ingredient list you can actually ask about.",
+      "They said “I’m just bad at texting.” We’ll tell you which proteins go into your brownie before things get serious.",
     action: "See What’s Inside",
     href: "/ingredients",
   },
@@ -124,7 +124,8 @@ export const variants = [
     id: "H",
     lead: "A manifesto you can",
     tail: "actually digest.",
-    support: "Our platform is simple. Chocolate brownies, with protein.",
+    support:
+      "The platform fits on a wrapper. Chocolate brownies with protein. No committee for the crumbs.",
     action: "Shop the Good Stuff",
     href: "/shop",
   },
@@ -133,7 +134,7 @@ export const variants = [
     lead: "Less drama.",
     tail: "More chocolate.",
     support:
-      "The group chat is on fire again. Take a brownie break. It comes with protein.",
+      "Mute the group chat. Eat a fudgy chocolate brownie with protein. See if they’ve calmed down by the last crumb.",
     action: "I Want a Bite",
     href: "/early-access",
   },
@@ -142,7 +143,7 @@ export const variants = [
     lead: "Boujee taste.",
     tail: "Zero velvet ropes.",
     support:
-      "A chocolate brownie with protein that treats your Tuesday like an occasion.",
+      "A chocolate brownie with protein, dressed like it has a dinner reservation. You’re eating it in socks.",
     action: "Meet the Boos",
     href: "/shop",
   },

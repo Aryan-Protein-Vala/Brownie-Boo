@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { Arrow, BiteEdge, Drips, Spark } from "../components/art";
+import { Arrow, BiteEdge, Drips, DropMeltMask, Spark } from "../components/art";
 import { ExpressiveBoo } from "../components/expressive-boo";
 import { Waitlist } from "../components/forms";
 import { Family, Hero, Texture } from "../components/home-motion";
@@ -29,7 +29,11 @@ export default async function Home({
 
   return (
     <HomeFilm>
-      <Hero initial={variant} preview={Boolean(forced) || !hasLocalServices} />
+      <Hero
+        key={variant.id}
+        initial={variant}
+        preview={Boolean(forced) || !hasLocalServices}
+      />
       <Family />
       <div className="film-bite">
         <div className="film-bite-stage">
@@ -87,8 +91,8 @@ export default async function Home({
               </span>
             </h2>
             <p>
-              Finally, something worth committing to. Pick three chocolate
-              brownies or mix your own box.
+              Keep your options open. Put three chocolate brownies in one box
+              and call it a committed relationship.
             </p>
             <SiteLink className="action action-ink" href="/build-a-box">
               Build Your Boo Box
@@ -115,6 +119,7 @@ export default async function Home({
         </section>
       </div>
       <div className="film-finale">
+        <DropMeltMask />
         <div className="film-finale-stage">
           <section className="story-feature">
             <Drips className="section-drip story-edge" />
@@ -141,9 +146,8 @@ export default async function Home({
             </h2>
             <div className="story-bottom">
               <p>
-                There’s enough to overthink already. We made a chocolate brownie
-                with protein that fits between whatever life has put on your
-                calendar.
+                We took one look at the group chat and put our energy into
+                chocolate. Three protein blends. Zero follow-up meetings.
               </p>
               <SiteLink className="text-link" href="/our-story">
                 How it started <Arrow />
@@ -168,17 +172,17 @@ export default async function Home({
               <p className="tag">The First Drop</p>
               <h2>
                 <span className="film-line">
-                  <span data-enter="down">Good things come</span>
+                  <span data-enter="down">Your situationship</span>
                 </span>
                 <span className="film-line">
                   <span data-enter="up">
-                    to those who <em>don’t wait.</em>
+                    <em>could never.</em>
                   </span>
                 </span>
               </h2>
               <p>
-                You can leave the group chat on read. We’ll tell you when a
-                batch has a date.
+                We’ll tell you when the first brownie batch has a date. You
+                won’t have to ask what we are.
               </p>
               <SiteLink href="/drops" className="action action-pink">
                 Catch the Drop
@@ -199,7 +203,7 @@ export default async function Home({
               <em data-enter="down">privileges.</em>
             </span>
           </h2>
-          <p>One group chat you’ll actually want updates from.</p>
+          <p>All brownie gossip. Zero “you up?” texts.</p>
           {hasCustomerForms ? (
             <Waitlist
               endpoint={formSubmitEndpoint}

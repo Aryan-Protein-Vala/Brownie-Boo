@@ -67,7 +67,7 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
         "What this preview stores",
         hasLocalServices
           ? "Your bag stays in this browser. Local preview accounts and campaign assignments are stored on the machine running Site B."
-          : "Your bag stays in this browser. This storefront preview uses no customer accounts.",
+          : "Your bag stays in this browser. A cookie remembers which homepage headline you were shown.",
       ],
       [
         "Sign-ups and messages",
@@ -291,7 +291,7 @@ export default async function Info({ params }: Props) {
               <em>privileges.</em>
             </>
           }
-          copy="One group chat you’ll actually want updates from."
+          copy="All brownie gossip. Zero “you up?” texts."
           theme="rose"
         >
           <div className="join-page">

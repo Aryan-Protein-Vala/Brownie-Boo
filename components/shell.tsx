@@ -117,6 +117,7 @@ export function SiteLink({
   return (
     <Link
       href={href}
+      prefetch={href === "/" ? false : undefined}
       data-curtain=""
       className={className}
       aria-label={ariaLabel}
