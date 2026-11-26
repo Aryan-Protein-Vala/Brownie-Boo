@@ -1,11 +1,14 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { Arrow, Wordmark } from "../../components/art";
 import styles from "./logos.module.css";
+import studio from "./studio.module.css";
+import { StudioMark, studioDirections, type StudioDirection } from "./studio-marks";
 
 type LogoId = "crumb" | "dessert" | "split" | "double" | "after" | "face";
 type Direction = { id: LogoId; name: string; note: string };
+type Candidate = Direction | StudioDirection;
 
 const originalLettering: Direction[] = [
   { id: "crumb", name: "Crumb Stamp", note: "A bitten brownie stamp with the original boo! inside." },
@@ -23,7 +26,7 @@ const groups = [
   { title: "Keep the original boo!", directions: originalLettering },
   { title: "Start with fresh lettering", directions: newLettering },
 ];
-const recommendation = originalLettering[0];
+const recommendation = studioDirections[0];
 
 function Logo({ id }: { id: LogoId | "current" }) {
   if (id === "current") {
@@ -86,26 +89,43 @@ function Logo({ id }: { id: LogoId | "current" }) {
   );
 }
 
-function Proof({ id, label }: { id: LogoId | "current"; label: string }) {
+function Proof({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className={styles.proof}>
       <p className={styles.proofLabel}>{label}</p>
       <div className={styles.proofBoard} data-tone="plum">
-        <Logo id={id} />
+        {children}
       </div>
       <div className={styles.proofStrip} data-tone="pink">
         <span className={styles.stripCaption}>Small-size check</span>
-        <Logo id={id} />
+        {children}
       </div>
     </div>
   );
 }
 
 export function LogoProofs() {
-  const [selected, setSelected] = useState(recommendation);
+  const [featured, setFeatured] = useState<StudioDirection>(recommendation);
+  const [selected, setSelected] = useState<Candidate>(recommendation);
+  const [take, setTake] = useState(0);
   const comparison = useRef<HTMLElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
 
-  function compare(direction: Direction) {
+  function stageDirection(direction: StudioDirection) {
+    setFeatured(direction);
+    setTake((current) => current + 1);
+    const screen = stage.current;
+    if (!screen) return;
+
+    const { top, bottom } = screen.getBoundingClientRect();
+    const headerBottom = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
+    if (top < headerBottom || bottom > window.innerHeight) {
+      screen.focus({ preventScroll: true });
+      screen.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function compare(direction: Candidate) {
     setSelected(direction);
     const section = comparison.current;
     if (section) {
@@ -116,25 +136,70 @@ export function LogoProofs() {
 
   return (
     <>
+      <section className={studio.studio} id="studio" aria-labelledby="studio-title">
+        <div className={studio.screen} ref={stage} tabIndex={-1} role="img" aria-label={`${featured.name} logo preview`} data-mark={featured.id} data-playing={featured.motion && take > 0 ? "" : undefined}>
+          <StudioMark id={featured.id} key={featured.id + take} />
+        </div>
+        <div className={studio.caption}>
+          <div>
+            <h2 id="studio-title">{featured.name}</h2>
+            {featured.id === recommendation.id && <span className={studio.recommended}>My pick</span>}
+          </div>
+          <p>{featured.note}</p>
+          <div className={studio.controls}>
+            {featured.motion && (
+              <button className={`${studio.control} ${studio.playControl}`} type="button" onClick={() => setTake((current) => current + 1)}>
+                Play logo motion
+                <svg viewBox="0 0 20 20" aria-hidden="true" fill="none">
+                  <path d="M7 4.5Q11.4 6.8 15.2 10Q11.4 13 6.8 15.5Q7.1 10.2 7 4.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
+            <button className={studio.control} type="button" onClick={() => compare(featured)}>Compare with current <Arrow /></button>
+          </div>
+        </div>
+        <div className={studio.index} aria-label="New logo directions" role="group">
+          {studioDirections.map((direction) => (
+            <button
+              className={studio.thumbButton}
+              key={direction.id}
+              type="button"
+              aria-pressed={featured.id === direction.id}
+              onClick={() => stageDirection(direction)}
+            >
+              <span className={studio.thumbnail} data-mark={direction.id}><StudioMark id={direction.id} /></span>
+              <span className={studio.thumbName}>
+                {direction.name}
+                {direction.motion && <span className={studio.thumbHint}>Motion</span>}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
       <section className={styles.comparison} id="comparison" aria-labelledby="comparison-title" tabIndex={-1} ref={comparison}>
         <div className={styles.sectionHeader}>
           <h2 id="comparison-title">Side by side</h2>
-          <a href="#directions" data-arrow="down">See all six <Arrow /></a>
+          <div className={styles.proofLinks}>
+            <a href="#studio" data-arrow="up">New studies <Arrow /></a>
+            <a href="#directions" data-arrow="down">First round <Arrow /></a>
+          </div>
         </div>
         <div className={styles.proofs}>
-          <Proof id="current" label="Current header logo" />
-          <Proof id={selected.id} label={selected.name} />
+          <Proof label="Current header logo"><Logo id="current" /></Proof>
+          <Proof label={selected.name}>
+            {"motion" in selected ? <StudioMark id={selected.id} /> : <Logo id={selected.id} />}
+          </Proof>
         </div>
         <p className={styles.selection} role="status">
           <strong>{selected.id === recommendation.id ? "My pick · " : ""}{selected.name}.</strong>{" "}
           {selected.id === recommendation.id
-            ? "The bite makes it feel like Brownie Boo before you read a word. The compact silhouette also fits a tiny wrapper seal, and the boo! still feels familiar."
+            ? "The joined o’s give it a silhouette you could spot across a shelf. It still reads at seal size, and the motion comes from the way the letters fit together."
             : selected.note}
         </p>
       </section>
       <section className={styles.directions} id="directions" aria-labelledby="directions-title">
         <div className={styles.sectionHeader}>
-          <h2 id="directions-title">The six directions</h2>
+          <h2 id="directions-title">The first round</h2>
           <a href="#comparison" data-arrow="up">Back to comparison <Arrow /></a>
         </div>
         <div role="group" aria-labelledby="directions-title">
@@ -148,7 +213,6 @@ export function LogoProofs() {
                       <span className={styles.optionArt} data-tone="pink"><Logo id={direction.id} /></span>
                       <span className={styles.optionDetails}>
                         <span className={styles.optionName}>{direction.name}</span>
-                        {direction.id === recommendation.id && <span className={styles.pick}>My pick</span>}
                         <span className={styles.optionNote}>{direction.note}</span>
                       </span>
                       <span className={styles.optionAction}>{direction.id === selected.id ? "Comparing" : "Compare"}{direction.id === selected.id ? <span aria-hidden="true">✓</span> : <Arrow />}</span>
