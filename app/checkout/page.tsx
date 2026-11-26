@@ -8,9 +8,9 @@ export default function CheckoutPage() {
       <div className="info-intro">
         <p className="tag">Checkout</p>
         <h1>
-          Good things
+          We’re still
           <br />
-          <em>are baking.</em>
+          <em>preheating.</em>
         </h1>
       </div>
       <Checkout />

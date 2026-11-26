@@ -64,13 +64,13 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
   const docs: Record<typeof kind, [string, ReactNode][]> = {
     privacy: [
       [
-        "What this preview stores",
+        "What goes in the cookie jar",
         hasLocalServices
           ? "Your bag stays in this browser. Local preview accounts and campaign assignments are stored on the machine running Site B."
-          : "Your bag stays in this browser. A cookie remembers which homepage headline you were shown.",
+          : "Your bag stays in this browser. A cookie keeps track of which homepage headlines you’ve seen so we can serve you a different one next time.",
       ],
       [
-        "Sign-ups and messages",
+        "When you write to Boo",
         formSubmitEndpoint ? (
           <>
             We use the email address you submit for the updates you request or
@@ -87,7 +87,7 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
         ),
       ],
       [
-        "Your choices",
+        "Your call",
         hasCustomerForms
           ? "You can clear browser storage to reset your bag. Use the contact form to ask about your submission or to stop receiving updates."
           : "You can clear browser storage to reset your bag.",
@@ -95,27 +95,27 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
     ],
     terms: [
       [
-        "The storefront preview",
+        "A peek inside the wrapper",
         "Formulations and packaging are in development. Product visuals are illustrative concepts.",
       ],
       [
-        "Bags and early access",
+        "Bags, sign-ups and zero commitment",
         hasCustomerForms
           ? "Adding brownies to your bag saves your picks on this device. Boo Club sign-ups and drop and restock interest are free and carry no obligation to buy."
           : "Adding brownies to your bag saves your picks on this device. It carries no obligation to buy.",
       ],
       [
-        "When the shop opens",
+        "Before we take orders",
         "Verified product information, prices and commercial terms will be available before orders open.",
       ],
     ],
     shipping: [
       [
-        "Production and dispatch",
+        "How the brownies get moving",
         "Brownie Boo plans to make brownies in scheduled batches. Confirmed release dates, expected dispatch and available destinations will appear with each drop.",
       ],
       [
-        "Shipping, cancellations and refunds",
+        "Shipping and refunds",
         "Shipping options and refund terms will be published before checkout opens. Paid ordering is currently closed.",
       ],
     ],
@@ -130,7 +130,7 @@ function Legal({ kind }: { kind: "privacy" | "terms" | "shipping" }) {
           </section>
         ))}
         <SiteLink href="/contact" className="text-link">
-          Contact Brownie Boo <Arrow />
+          Ask Boo <Arrow />
         </SiteLink>
       </div>
     </Page>
@@ -165,20 +165,20 @@ export default async function Info({ params }: Props) {
           </figure>
           <div className="origin-copy">
             <h2>
-              More chocolate.
+              It started with a brownie.
               <br />
-              <em>Less overthinking.</em>
+              <em>Obviously.</em>
             </h2>
             <div>
               <p>
-                Pointless meetings. The group project nobody replied to. That
-                text you probably shouldn’t send. Life gives us plenty to
-                overthink.
+                People will put “quick” in a meeting invite and then steal an
+                hour of your life. Somehow the snack is the thing that comes
+                with homework. We had notes.
               </p>
               <p>
-                We’re working on chocolate brownies with three protein blends.
-                Something to keep in your bag, eat between meetings, or have for
-                dessert on a Tuesday. That part we take seriously.
+                So we made three fudgy chocolate brownies with different protein
+                blends. Park one in your desk drawer. Eat one over the sink.
+                Tell your group chat you made them if you must.
               </p>
               <SiteLink className="action action-ink" href="/shop">
                 Meet the Boos
@@ -193,10 +193,10 @@ export default async function Info({ params }: Props) {
           label="Ingredients & Nutrition"
           heading={
             <>
-              What’s inside <em>your Boo?</em>
+              Boo’s <em>ingredient receipts.</em>
             </>
           }
-          copy="Relationship history is complicated. Here’s what goes into each Boo."
+          copy="Since everyone’s a detective now, here are the protein sources and known allergens for each Boo."
           theme="lilac"
         >
           <div className="ingredients-ledger">
@@ -214,14 +214,14 @@ export default async function Info({ params }: Props) {
               </article>
             ))}
             <section>
-              <h2>Nutrition and labels</h2>
+              <h2>The actual numbers</h2>
               <p>
                 We’re confirming exact values, final ingredient lists,
                 cross-contact, storage and shelf life for each formulation.
                 We’ll share verified information before orders open.
               </p>
               <SiteLink href="/faq" className="text-link">
-                Browse the FAQ <Arrow />
+                Read the FAQ <Arrow />
               </SiteLink>
             </section>
           </div>
@@ -233,15 +233,15 @@ export default async function Info({ params }: Props) {
           label="Upcoming Drops"
           heading={
             <>
-              Good things come
+              At least this drop
               <br />
-              to those who <em>don’t wait.</em>
+              <em>will text back.</em>
             </>
           }
           copy={
             hasCustomerForms
-              ? "You can leave the group chat on read. We’ll send the batch news."
-              : "The first batch is in the works. This is where the drop dates will land."
+              ? "When the brownies have a date, we’ll put it here. You can stop reading into our stories."
+              : "First batch in the works. This is where the confirmed date will land."
           }
           theme="lilac"
         >
@@ -255,16 +255,19 @@ export default async function Info({ params }: Props) {
               />
             </figure>
             <div>
-              <h2>The first batch.</h2>
+              <h2>
+                Drop 001. <em>It’s complicated.</em>
+              </h2>
               <p>
-                Meet the three formulations ahead of our first scheduled batch.
-                Release dates, available packs, prices and dispatch estimates
-                will be shared once confirmed.
+                Three Boos are lined up for our first batch. The date, pack
+                availability, prices and dispatch estimates go here once they’re
+                confirmed.
               </p>
               {hasCustomerForms ? (
                 <>
                   <p>
-                    Leave your email to register interest in the first batch.
+                    Leave an email for first-batch updates. We promise to use
+                    our words.
                   </p>
                   <Waitlist
                     endpoint={formSubmitEndpoint}
@@ -291,7 +294,7 @@ export default async function Info({ params }: Props) {
               <em>privileges.</em>
             </>
           }
-          copy="All brownie gossip. Zero “you up?” texts."
+          copy="A little brownie gossip for your inbox. No one here is asking “wyd” at 1 a.m."
           theme="rose"
         >
           <div className="join-page">
@@ -300,7 +303,10 @@ export default async function Info({ params }: Props) {
                 <Waitlist endpoint={formSubmitEndpoint} />
               ) : (
                 <>
-                  <p>Sign-ups open closer to the first drop.</p>
+                  <p>
+                    The list opens closer to the first drop. Even gossip needs a
+                    release date.
+                  </p>
                   <SiteLink href="/drops" className="text-link">
                     See Upcoming Drops <Arrow />
                   </SiteLink>
@@ -311,11 +317,11 @@ export default async function Info({ params }: Props) {
           </div>
           <section className="club-community">
             <h2>
-              Show us your <em>Boo.</em>
+              Spill <em>the cocoa.</em>
             </h2>
             <p>
-              Got a brownie ritual or a flavour you want us to make? Boo wants
-              to hear it.
+              A flavour you’d defend in court? A deeply suspicious way you eat
+              brownies? We’d like to hear both.
             </p>
             <SiteLink href="/contact" className="text-link">
               Tell Boo <Arrow />
@@ -329,7 +335,7 @@ export default async function Info({ params }: Props) {
           label="FAQ"
           heading={
             <>
-              Nosy? <em>We like it.</em>
+              Since you’re <em>asking.</em>
             </>
           }
           theme="paper"
@@ -345,7 +351,7 @@ export default async function Info({ params }: Props) {
               </details>
             ))}
             <SiteLink className="text-link" href="/contact">
-              Ask something else <Arrow />
+              Ask Boo directly <Arrow />
             </SiteLink>
           </div>
         </Page>
@@ -356,13 +362,13 @@ export default async function Info({ params }: Props) {
           label="Contact"
           heading={
             <>
-              Hey, <em>Brownie Boo.</em>
+              Dear Boo, <em>hear me out.</em>
             </>
           }
           copy={
             hasCustomerForms
-              ? "Questions, ideas, and unusually strong opinions about chocolate are welcome."
-              : "The contact form opens with the shop. We’re looking forward to your unusually strong opinions about chocolate."
+              ? "Questions, flavour pitches, or a strong opinion about corner pieces? Put it in writing."
+              : "The contact form opens with the shop. Save your corner-piece thesis for us."
           }
           theme="rose"
         >
@@ -375,13 +381,13 @@ export default async function Info({ params }: Props) {
           label="Account"
           heading={
             <>
-              Hello, <em>Boo.</em>
+              Back for <em>another bite?</em>
             </>
           }
           copy={
             hasLocalServices
-              ? "Use a local account to try out signing in."
-              : "Customer accounts open with the shop."
+              ? "Try signing in with a local preview account. The brownies aren’t judging your password."
+              : "Accounts open with the shop. Until then, no password to forget."
           }
           theme="lilac"
         >
@@ -394,13 +400,13 @@ export default async function Info({ params }: Props) {
           label="Order Tracking"
           heading={
             <>
-              Where’s <em>my Boo?</em>
+              Boo, <em>where are you?</em>
             </>
           }
           copy={
             hasLocalServices
-              ? "Enter your order reference and the email used for that order."
-              : "You’ll be able to track your order here once checkout opens."
+              ? "Enter your order reference and the email you used. We’ll do the detective work."
+              : "You’ll be able to follow your order here once checkout opens. No need to turn on read receipts."
           }
           theme="paper"
         >

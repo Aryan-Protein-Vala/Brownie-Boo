@@ -6,8 +6,8 @@ export default function NotFound() {
     <section className="info-page tint-lilac">
       <div className="info-intro">
         <p className="tag">404</p>
-        <h1>All crumbs.</h1>
-        <p>Boo may have eaten this page.</p>
+        <h1>Well, that’s crumbs.</h1>
+        <p>We found a trail of crumbs where that page should be. Suspicious.</p>
         <SiteLink className="action action-ink" href="/">
           Back to Brownie Boo!
         </SiteLink>

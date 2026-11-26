@@ -42,7 +42,7 @@ export default async function Home({
             <Drips />
             <BiteEdge />
             <div className="sizes-title">
-              <p className="tag">The pack sizes</p>
+              <p className="tag">Pick your portion</p>
               <h2>
                 <span className="film-line">
                   <span data-enter="up">Sometimes</span>
@@ -72,7 +72,7 @@ export default async function Home({
                 </SiteLink>
               ))}
               <p className="form-fine">
-                Weights refer to the finished brownie.
+                Grams are brownie weight. The emotional baggage is extra.
               </p>
             </div>
           </section>
@@ -84,15 +84,15 @@ export default async function Home({
           <div className="box-words">
             <h2>
               <span className="film-line">
-                <span data-enter="down">Commitment issues?</span>
+                <span data-enter="down">Seeing other Boos?</span>
               </span>
               <span className="film-line">
-                <em data-enter="up">Get them all.</em>
+                <em data-enter="up">Make it a trio.</em>
               </span>
             </h2>
             <p>
-              Keep your options open. Put three chocolate brownies in one box
-              and call it a committed relationship.
+              Pick three brownies for your Boo Box. Finally, a seating chart
+              where nobody’s weird uncle has to go next to you.
             </p>
             <SiteLink className="action action-ink" href="/build-a-box">
               Build Your Boo Box
@@ -135,25 +135,26 @@ export default async function Home({
             <p className="tag">Our Story</p>
             <h2>
               <span className="film-line">
-                <span data-enter="down">Taking life</span>
+                <span data-enter="down">We take life</span>
               </span>
               <span className="film-line">
-                <span data-enter="up">unseriously.</span>
+                <span data-enter="up">with a pinch of salt.</span>
               </span>
               <span className="film-line">
-                <em data-enter="down">Chocolate? Very seriously.</em>
+                <em data-enter="down">And a lot of chocolate.</em>
               </span>
             </h2>
             <div className="story-bottom">
               <p>
-                We took one look at the group chat and put our energy into
-                chocolate. Three protein blends. Zero follow-up meetings.
+                The world already has enough people turning snacks into
+                homework. We made three fudgy brownies with three protein
+                blends. There’ll be no quiz.
               </p>
               <SiteLink className="text-link" href="/our-story">
-                How it started <Arrow />
+                Read our story <Arrow />
               </SiteLink>
               <SiteLink className="text-link" href="/ingredients">
-                What’s inside <Arrow />
+                Read the ingredients <Arrow />
               </SiteLink>
             </div>
           </section>
@@ -172,17 +173,17 @@ export default async function Home({
               <p className="tag">The First Drop</p>
               <h2>
                 <span className="film-line">
-                  <span data-enter="down">Your situationship</span>
+                  <span data-enter="down">The first drop</span>
                 </span>
                 <span className="film-line">
                   <span data-enter="up">
-                    <em>could never.</em>
+                    <em>will text back.</em>
                   </span>
                 </span>
               </h2>
               <p>
-                We’ll tell you when the first brownie batch has a date. You
-                won’t have to ask what we are.
+                When the first brownie batch has a confirmed date, you’ll hear
+                from us. No need to decode a story like.
               </p>
               <SiteLink href="/drops" className="action action-pink">
                 Catch the Drop
@@ -203,7 +204,10 @@ export default async function Home({
               <em data-enter="down">privileges.</em>
             </span>
           </h2>
-          <p>All brownie gossip. Zero “you up?” texts.</p>
+          <p>
+            Give us your email and we’ll give you the brownie gossip. Nobody’s
+            adding you to a group chat.
+          </p>
           {hasCustomerForms ? (
             <Waitlist
               endpoint={formSubmitEndpoint}
@@ -218,7 +222,7 @@ export default async function Home({
         </div>
         <figure className="club-boo">
           <ExpressiveBoo />
-          <figcaption>I’m small. My personality isn’t.</figcaption>
+          <figcaption>I bring snacks. I am snacks.</figcaption>
         </figure>
       </section>
       <BrownieRun />

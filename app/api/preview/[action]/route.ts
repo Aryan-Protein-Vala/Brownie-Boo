@@ -228,7 +228,7 @@ export async function POST(
     const { action } = await params;
     if (action === "checkout")
       throw new PreviewError(
-        "Ordering opens after the first batch is ready.",
+        "The oven’s still preheating. Ordering opens when the first batch is ready.",
         403,
       );
 
@@ -264,7 +264,7 @@ export async function POST(
         saveContact(email, name, message);
         return respond(
           undefined,
-          "Your message was saved in the local preview.",
+          "Boo has your note. It’s saved in this local preview.",
         );
       }
       case "experiment": {
@@ -313,7 +313,10 @@ export async function POST(
     }
     console.error("Brownie Boo local preview API error:", error);
     return NextResponse.json(
-      { ok: false, message: "Something went wrong. Please try again." },
+      {
+        ok: false,
+        message: "Well, crumbs. Something went wrong. Please try again.",
+      },
       {
         status: 500,
         headers: { "Cache-Control": "no-store" },

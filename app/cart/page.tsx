@@ -9,7 +9,9 @@ export default function CartPage() {
         <h1>
           Your <em>boo bag.</em>
         </h1>
-        <p>Very good company.</p>
+        <p>
+          You brought excellent company. Your browser is holding their seats.
+        </p>
       </div>
       <Cart />
     </section>

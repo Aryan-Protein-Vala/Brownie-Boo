@@ -27,7 +27,7 @@ export function ProductControls({
   return (
     <div className="product-controls">
       <fieldset>
-        <legend>Pick a size</legend>
+        <legend>Pick your portion</legend>
         <div className="weights">
           {packs.map(({ grams, name }) => (
             <label key={grams}>
@@ -50,7 +50,7 @@ export function ProductControls({
         </div>
       </fieldset>
       <p className="weight-note">
-        {pack.note} <span>Finished product weight.</span>
+        {pack.note} <span>Grams are brownie weight.</span>
       </p>
       <ActionButton
         className="action action-ink"
@@ -58,8 +58,8 @@ export function ProductControls({
         onClick={() =>
           setStatus(
             changeBag([{ slug: product.slug, grams: weight, quantity: 1 }])
-              ? `${pack.name} added to your preview bag.`
-              : "Allow browser storage to save your bag.",
+              ? `${pack.name} is in your preview bag. Things are getting serious.`
+              : "Your browser wouldn’t save the bag. Allow site storage and try again.",
           )
         }
       >
@@ -96,8 +96,8 @@ export function BoxBuilder() {
   function addBox() {
     setMessage(
       changeBag(choices.map((choice) => ({ ...choice, quantity: 1 })))
-        ? "Your three picks are in your preview bag."
-        : "Allow browser storage to save your box.",
+        ? "All three Boos are in your preview bag. A very good group project."
+        : "Your browser wouldn’t save the box. Allow site storage and try again.",
     );
   }
 
@@ -106,14 +106,15 @@ export function BoxBuilder() {
       <Drips className="section-drip builder-edge" />
       <div className="builder-modes">
         <p>
-          Pick one brownie for each spot, or start with the First Bite Trio.
+          Three spots. Zero awkward casting calls. Pick a brownie for each spot
+          or start with the First Bite Trio.
         </p>
         <button
           type="button"
           className="text-link"
           onClick={() => {
             setChoices(initialChoices);
-            setMessage("First Bite Trio selected.");
+            setMessage("The First Bite Trio is in. Everyone showed up.");
           }}
         >
           Load the First Bite Trio
@@ -243,7 +244,7 @@ export function Cart() {
       {items.length === 0 ? (
         <div className="cart-empty">
           <Bag />
-          <h2>Nothing to chew on yet.</h2>
+          <h2>Your bag is just vibes right now.</h2>
           <SiteLink href="/shop" className="action action-ink">
             Meet the Boos
           </SiteLink>
@@ -257,15 +258,17 @@ export function Cart() {
                 line={line}
                 onChange={(amount) => {
                   if (!changeBag([{ ...line, quantity: amount }]))
-                    setError("Allow browser storage to update your bag.");
+                    setError(
+                      "Your browser wouldn’t update the bag. Allow site storage and try again.",
+                    );
                 }}
               />
             ))}
           </ul>
           <p aria-live="polite">{error}</p>
           <p className="form-fine">
-            Your bag is saved on this device. Pricing and ordering will open
-            with a confirmed release.
+            Your bag stays on this device. We’ll post prices and open ordering
+            when the release is confirmed.
           </p>
           <SiteLink href="/checkout" className="action action-ink">
             View checkout
@@ -286,7 +289,7 @@ export function Checkout() {
       <h2>
         {count
           ? `${count} brownie ${count === 1 ? "pack" : "packs"} in your preview bag`
-          : "Your preview bag is empty"}
+          : "Your preview bag has an opening"}
       </h2>
       {count > 0 && (
         <ul>
@@ -298,8 +301,8 @@ export function Checkout() {
         </ul>
       )}
       <p>
-        Checkout opens when commercial production and fulfilment are ready. Your
-        bag can stay put until then.
+        Checkout opens when the brownies are ready to make and ship. Your picks
+        can hang out in the bag meanwhile.
       </p>
       <SiteLink href="/early-access" className="action action-ink">
         Get First Bite

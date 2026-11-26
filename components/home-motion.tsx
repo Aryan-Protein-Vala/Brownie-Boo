@@ -101,8 +101,7 @@ export function Hero({
       <div className="hero-copy">
         <p className="hero-kicker">{brandTagline}</p>
         <h1>
-          <span>{variant.lead}</span>
-          {variant.tail && <em>{variant.tail}</em>}
+          <span>{variant.lead}</span> {variant.tail && <em>{variant.tail}</em>}
         </h1>
         <p className="hero-support">{variant.support}</p>
         <div
@@ -159,7 +158,8 @@ export function Family() {
       );
       const travelled = offset - section.getBoundingClientRect().top;
       // A rounded scroll position can land a fraction of a pixel short.
-      const progress = travelled >= span - 1 ? 1 : Math.max(0, travelled / span);
+      const progress =
+        travelled >= span - 1 ? 1 : Math.max(0, travelled / span);
       if (progress === lastProgress) return;
       lastProgress = progress;
       section.style.setProperty("--slide", String(progress));
@@ -231,7 +231,7 @@ export function Family() {
           <h2>
             Three Boos.
             <br />
-            <em>All your type.</em>
+            <em>Swipe with your mouth.</em>
           </h2>
         </div>
         <SiteLink href="/shop" className="text-link">
@@ -351,10 +351,10 @@ export function Texture() {
         <div className="texture-copy">
           <h2>
             <span className="film-line">
-              <span data-enter="down">Go ahead.</span>
+              <span data-enter="down">Caught staring?</span>
             </span>
             <span className="film-line">
-              <em data-enter="up">Stare.</em>
+              <em data-enter="up">Fair.</em>
             </span>
           </h2>
           <ActionButton
@@ -363,14 +363,14 @@ export function Texture() {
             aria-pressed={open}
             className="action action-pink"
           >
-            {open ? "Put it back" : "Break it open"}
+            {open ? "Close it up" : "Break it open"}
           </ActionButton>
         </div>
         <Spark className="texture-spark" />
         <p className="texture-caption" aria-live="polite">
           {open
             ? "All crags, crumbs and chocolate."
-            : "A very serious chocolate situation."}
+            : "Thirst trap. For chocolate."}
         </p>
       </div>
     </section>

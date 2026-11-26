@@ -18,13 +18,13 @@ export default async function Shop({
         <div>
           <p className="tag">Shop All</p>
           <h1>
-            Meet the <em>Boos.</em>
+            What’s <em>your type?</em>
           </h1>
         </div>
         <div>
           <p>
-            Three types worth getting involved with. Pick your chocolate brownie
-            and a size to suit the situation.
+            Three chocolate brownies, all very available. Pick your Boo and
+            choose how serious you want to get about the pack size.
           </p>
           <div className="shop-filters" aria-label="Browse by pack size">
             <SiteLink
@@ -78,8 +78,8 @@ export default async function Shop({
       </div>
       <p className="shop-note">
         <Drips className="section-drip shop-edge" />
-        Packaging concepts. Orders open with a confirmed drop.{" "}
-        <SiteLink href="/drops">Check Upcoming Drops</SiteLink>
+        The wrappers are still getting dressed. Orders open with a confirmed
+        drop. <SiteLink href="/drops">See upcoming drops</SiteLink>
       </p>
     </section>
   );

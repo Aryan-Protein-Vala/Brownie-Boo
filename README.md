@@ -11,7 +11,7 @@ Open [Site B](http://127.0.0.1:4173/). For the optimized server, run `npm run bu
 
 ## Hosted preview
 
-Vercel hosts the product pages, box builder, browser-local bag and arcade game. The hosted homepage randomly assigns one of ten hero headlines per browser. An assignment cookie keeps it stable across visits. Links from individual campaigns can set a headline with `?hero=A` through `?hero=J` without changing the saved assignment. Paid checkout is disabled.
+Vercel hosts the product pages, box builder, browser-local bag and arcade game. The hosted homepage picks a different headline on each new load. A cookie tracks the remaining headlines so each browser sees all ten before the next cycle. Links from individual campaigns can set a headline with `?hero=A` through `?hero=J` without advancing the rotation. Paid checkout is disabled.
 
 Boo Club, first-batch interest, product restock and contact forms post to FormSubmit when `BOO_FORMSUBMIT_RECIPIENT` is set to the inbox address or its activated FormSubmit token. Configure the value in Vercel for production or in `.env.local` for local testing. The first submission triggers a confirmation email. Activate the inbox using that email to receive submissions.
 

@@ -280,13 +280,14 @@ export function BrownieRun() {
     >
       <Drips className="section-drip bakery-edge" />
       <div className="game-copy">
-        <p className="tag">The midnight bake</p>
+        <p className="tag">Boo’s cardio era</p>
         <h2 id="run-title">
           Boo’s <em>Brownie Break.</em>
         </h2>
         <p id="run-controls">
-          Jump over baking tins and tangled wrappers. Catch crumbs for bonus
-          points. Press Space or Up Arrow, or tap the bakery to jump.
+          Boo runs on crumbs and poor decisions. Jump over tins and wrappers and
+          catch crumbs for bonus points. Press Space or Up Arrow, or tap to
+          jump.
         </p>
       </div>
       <div className="run-console" data-phase={phase}>
@@ -359,9 +360,9 @@ export function BrownieRun() {
           </svg>
           <div className="run-message" role="status">
             {phase === "crash"
-              ? "Boo hit a snag."
+              ? "Boo just became a crumb."
               : phase === "paused"
-                ? "Taking a breather."
+                ? "Boo called a snack break."
                 : ""}
           </div>
         </div>

@@ -94,7 +94,7 @@ export function Waitlist({
       response.ok
         ? {
             ...response,
-            message: "You’re on the list. Good taste deserves a head start.",
+            message: "You’re on the list. Brownie gossip looks good on you.",
           }
         : response,
     );
@@ -124,7 +124,7 @@ export function Waitlist({
             type="email"
             autoComplete="email"
             required
-            placeholder="you@example.com"
+            placeholder="crumbs@example.com"
             maxLength={254}
           />
         </SketchField>
@@ -137,14 +137,14 @@ export function Waitlist({
         </ActionButton>
       </div>
       <p className="form-fine">
-        Drop and restock updates from Brownie Boo.{" "}
+        Drop and restock news. Zero midnight “you up?” texts.{" "}
         <a href="/privacy">Privacy</a>
       </p>
       {!endpoint && (
         <>
           <Status value={result} />
           <noscript>
-            <p>Enable JavaScript to join the local preview waitlist.</p>
+            <p>Turn on JavaScript to join the local preview waitlist.</p>
           </noscript>
         </>
       )}
@@ -189,7 +189,7 @@ function CustomerForm({
     <form className="customer-form" method="post" onSubmit={submit}>
       {children}
       <ActionButton type="submit" className="action action-ink" disabled={busy}>
-        {busy ? "One moment…" : button}
+        {busy ? "Hang tight…" : button}
       </ActionButton>
       <Status value={result} />
     </form>
@@ -203,6 +203,7 @@ export function Contact({ endpoint }: { endpoint?: string }) {
       <SketchField>
         <input
           id="sender-name"
+          placeholder="Sam “Just One Bite” Patel"
           name="name"
           autoComplete="name"
           required
@@ -213,6 +214,7 @@ export function Contact({ endpoint }: { endpoint?: string }) {
       <SketchField>
         <input
           id="sender-email"
+          placeholder="your.reply.to@example.com"
           type="email"
           name="email"
           autoComplete="email"
@@ -224,6 +226,7 @@ export function Contact({ endpoint }: { endpoint?: string }) {
       <SketchField>
         <textarea
           id="message"
+          placeholder="Dear Boo, I have a theory about corner pieces…"
           name="message"
           rows={5}
           required
@@ -237,13 +240,13 @@ export function Contact({ endpoint }: { endpoint?: string }) {
     <form action={endpoint} method="post" className="customer-form">
       <FormSubmitFields subject="Contact message" />
       {fields}
-      <ActionButton type="submit">Send your note</ActionButton>
+      <ActionButton type="submit">Send it to Boo</ActionButton>
       <p className="form-fine">
-        We use your email to reply. <a href="/privacy">Privacy</a>
+        Leave an email so Boo can write back. <a href="/privacy">Privacy</a>
       </p>
     </form>
   ) : (
-    <CustomerForm action="contact" button="Send your note">
+    <CustomerForm action="contact" button="Send it to Boo">
       {fields}
     </CustomerForm>
   );
@@ -261,6 +264,7 @@ export function Track() {
         <label htmlFor="track-email">Order email</label>
         <input
           id="track-email"
+          placeholder="the.inbox.you.used@example.com"
           type="email"
           name="email"
           autoComplete="email"
@@ -271,6 +275,7 @@ export function Track() {
         <label htmlFor="track-code">Order reference</label>
         <input
           id="track-code"
+          placeholder="The code from your confirmation"
           name="code"
           required
           maxLength={60}
@@ -311,7 +316,7 @@ export function Account() {
   if (profile)
     return (
       <div className="account-profile">
-        <h2>Hi, {profile.name}.</h2>
+        <h2>Look who’s back, {profile.name}.</h2>
         <p>{profile.email}</p>
         <CustomerForm
           action="account"
@@ -353,6 +358,7 @@ export function Account() {
             <label htmlFor="account-name">Your name</label>
             <input
               id="account-name"
+              placeholder="What should Boo call you?"
               name="name"
               autoComplete="name"
               required
@@ -363,6 +369,7 @@ export function Account() {
         <label htmlFor="account-email">Email address</label>
         <input
           id="account-email"
+          placeholder="snack.alias@example.com"
           name="email"
           type="email"
           autoComplete="username"
@@ -372,6 +379,11 @@ export function Account() {
         <label htmlFor="account-password">Password</label>
         <input
           id="account-password"
+          placeholder={
+            register
+              ? "10+ characters. Make it weird."
+              : "Your password goes here."
+          }
           name="password"
           type="password"
           autoComplete={register ? "new-password" : "current-password"}
@@ -381,7 +393,8 @@ export function Account() {
         />
         {register && (
           <p className="form-fine">
-            Use a preview password of at least 10 characters.
+            Use at least 10 characters. Save the good passwords for your real
+            accounts.
           </p>
         )}
       </CustomerForm>

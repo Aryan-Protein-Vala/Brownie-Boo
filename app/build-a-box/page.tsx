@@ -11,9 +11,9 @@ export default function Box() {
         <div>
           <p className="tag">Build Your Boo Box</p>
           <h1>
-            Commitment issues?
+            Seeing other Boos?
             <br />
-            <em>Get them all.</em>
+            <em>Make it a trio.</em>
           </h1>
         </div>
         <img

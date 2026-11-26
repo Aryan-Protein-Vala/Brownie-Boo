@@ -5,11 +5,21 @@ import { getOrAssignHero, HERO_COOKIE } from "./lib/local-store";
 import { hasLocalServices } from "./lib/preview-mode";
 
 const hostedHeroCookie = "boo_b_hosted_hero";
+const heroIds = variants.map(({ id }) => id);
 
 function assignHostedHero(existing?: string) {
-  const saved = variants.find(({ id }) => id === existing);
-  const { id } = saved ?? variants[randomInt(variants.length)];
-  return { variant: id, value: id };
+  const [previous, pending] = existing?.split(".") ?? [];
+  const remaining = heroIds.filter(
+    (id) => pending?.includes(id) && id !== previous,
+  );
+  const pool = remaining.length ? remaining : heroIds;
+  const choices = pool.filter((id) => id !== previous);
+  const variant = choices[randomInt(choices.length)];
+
+  return {
+    variant,
+    value: `${variant}.${pool.filter((id) => id !== variant).join("")}`,
+  };
 }
 
 export function proxy(request: NextRequest) {

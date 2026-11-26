@@ -8,7 +8,7 @@ export default function ErrorPage({ reset }: { reset: () => void }) {
     <section className="info-page tint-lilac">
       <div className="info-intro">
         <h1>Oh, crumbs.</h1>
-        <p>Something got a little sticky.</p>
+        <p>The page got itself into a sticky situation. Give it another go.</p>
         <ActionButton
           className="action action-ink"
           type="button"

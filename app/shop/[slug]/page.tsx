@@ -38,11 +38,11 @@ export default async function ProductPage({ params, searchParams }: Props) {
           />
           <FamilySeam className="product-photo-side" />
           <Drips className="section-drip product-photo-bottom" />
-          <figcaption>Packaging concept</figcaption>
+          <figcaption>Wrapper sneak peek • packaging concept</figcaption>
         </figure>
         <div className="product-intro">
           <SiteLink href="/shop" className="tag product-back">
-            All Boos
+            Back to all Boos
           </SiteLink>
           <h1>
             {product.split[0]}
@@ -72,7 +72,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
           <h2>
             Inside
             <br />
-            <em>the Boo.</em>
+            <em>the wrapper.</em>
           </h2>
           <dl>
             <dt>Protein sources</dt>
@@ -89,7 +89,7 @@ export default async function ProductPage({ params, searchParams }: Props) {
           </SiteLink>
           {hasCustomerForms && (
             <details className="restock">
-              <summary>Get restock updates for this Boo</summary>
+              <summary>Want a text back? Get restock updates</summary>
               <Waitlist
                 endpoint={formSubmitEndpoint}
                 topic={`restocks: ${product.slug}`}

@@ -1,7 +1,15 @@
 export const packs = [
-  { grams: 50, name: "Lil’ Boo", note: "For a quick little rendezvous." },
-  { grams: 200, name: "Big Boo", note: "For sharing, allegedly." },
-  { grams: 250, name: "Absolute Boo", note: "Things are getting serious." },
+  {
+    grams: 50,
+    name: "Lil’ Boo",
+    note: "The one you didn’t tell the group chat about.",
+  },
+  { grams: 200, name: "Big Boo", note: "“Want a bite?” said under duress." },
+  {
+    grams: 250,
+    name: "Absolute Boo",
+    note: "Put this one in your emergency contacts.",
+  },
 ] as const;
 
 export const products = [
@@ -9,9 +17,9 @@ export const products = [
     slug: "original",
     name: "The Original Boo",
     split: ["The Original", "Boo."],
-    blurb: "Survived another quick sync.",
+    blurb: "The desk drawer’s employee of the month.",
     description:
-      "The quick sync is somehow in its second season. Good thing your desk drawer has a fudgy chocolate brownie with soy and peanut proteins.",
+      "Your calendar says “quick sync.” Your desk drawer has a fudgy brownie with soy and peanut proteins. One of them gets you.",
     ingredients: "Soy protein and peanut protein",
     allergens: "Soy and peanuts",
     wrapper: "original-960",
@@ -22,9 +30,9 @@ export const products = [
     slug: "double-trouble",
     name: "Double Trouble",
     split: ["Double", "Trouble."],
-    blurb: "Your side quest has side quests.",
+    blurb: "For when “one quick errand” becomes a franchise.",
     description:
-      "You went out for toothpaste. Now you’re helping someone move. This chocolate brownie with soy, whey and peanut proteins is for the detour.",
+      "You left for toothpaste. Now you’re carrying a sofa. Double Trouble packs soy, whey and peanut proteins into a chocolate brownie for the detour.",
     ingredients: "Soy protein, whey protein and peanut protein",
     allergens: "Soy, milk and peanuts",
     wrapper: "double-960",
@@ -35,9 +43,9 @@ export const products = [
     slug: "boujee",
     name: "Boujee Boo",
     split: ["Boujee", "Boo."],
-    blurb: "Dressed for a reservation. Eaten in socks.",
+    blurb: "Has a dress code. You’re ignoring it.",
     description:
-      "Looks like it has a table at eight. Tastes like rich chocolate. It’s a brownie with whey and milk proteins, and the dress code is whatever you’re wearing.",
+      "A rich chocolate brownie with whey and milk proteins. Looks like it booked a table for eight. You’re eating it over the sink.",
     ingredients: "Whey protein and milk protein",
     allergens: "Milk",
     wrapper: "deluxe-960",
@@ -59,37 +67,37 @@ export const art = (name: string) => `/art/${name}.webp`;
 export const variants = [
   {
     id: "A",
-    lead: "Bro, protein isn’t",
-    tail: "a personality.",
+    lead: "Bro, put the",
+    tail: "shaker down.",
     support:
-      "Put the shaker down. It’s starting to sound like a maraca. There’s protein in this fudgy chocolate brownie, too.",
+      "Daily protein stress? Take five. This fudgy brownie brings chocolate and protein. The shaker can have a day off.",
     action: "Meet the Boos",
     href: "/shop",
   },
   {
     id: "B",
-    lead: "You’ve got enough",
-    tail: "problems.",
+    lead: "Stop counting.",
+    tail: "Start chewing.",
     support:
-      "That forgotten load of laundry has a birthday now. A chocolate brownie with protein takes one thing off your list.",
+      "Less tracking. More chewing. This fudgy brownie has protein. Your spreadsheet can spiral without you.",
     action: "Get First Bite",
     href: "/early-access",
   },
   {
     id: "C",
-    lead: "Group project?",
-    tail: "Solo brownie.",
+    lead: "A brownie smarter",
+    tail: "than your diet plan.",
     support:
-      "Four people. One person doing the slides. One chocolate brownie with protein. Do the maths.",
+      "Looks like dessert. Brings protein. Already did more than your group project partner.",
     action: "Meet the Boos",
     href: "/shop",
   },
   {
     id: "D",
-    lead: "This meeting could’ve",
-    tail: "been a brownie.",
+    lead: "Your 9-to-5 just",
+    tail: "got a cheat code.",
     support:
-      "They said “quick sync” 47 minutes ago. Good thing your desk drawer has a fudgy chocolate brownie with protein.",
+      "One fudgy brownie closer to being done for the day. The “quick sync” can circle back without you.",
     action: "Shop the Good Stuff",
     href: "/shop",
   },
@@ -98,7 +106,7 @@ export const variants = [
     lead: "Chocolate first.",
     tail: "Protein plot twist.",
     support:
-      "We put protein in a fudgy brownie. Your ex put “hey stranger” in the drafts.",
+      "Brownie taste. Protein peace. Your ex can take that “hey stranger” text elsewhere.",
     action: "Meet the Boos",
     href: "/shop",
   },
@@ -107,43 +115,43 @@ export const variants = [
     lead: "Emotionally unavailable.",
     tail: "Nutritionally interesting.",
     support:
-      "They’ll text back in three to five business days. This chocolate brownie with protein is right here.",
+      "Your situationship takes three to five business days to reply. This chocolate brownie brings protein and zero read receipts.",
     action: "Catch the Drop",
     href: "/drops",
   },
   {
     id: "G",
-    lead: "Red flags?",
-    tail: "Read the ingredients.",
+    lead: "No chicken. No problem.",
+    tail: "More chocolate.",
     support:
-      "They said “I’m just bad at texting.” We’ll tell you which proteins go into your brownie before things get serious.",
+      "Skipping chicken? Our named protein sources are from plants and dairy. Final vegetarian labelling is still being confirmed.",
     action: "See What’s Inside",
     href: "/ingredients",
   },
   {
     id: "H",
-    lead: "A manifesto you can",
-    tail: "actually digest.",
+    lead: "Life's too short",
+    tail: "to eat chalk.",
     support:
-      "The platform fits on a wrapper. Chocolate brownies with protein. No committee for the crumbs.",
+      "Ever had a protein bar that tasted like a school supply? Here’s a fudgy chocolate brownie with protein.",
     action: "Shop the Good Stuff",
     href: "/shop",
   },
   {
     id: "I",
-    lead: "Less drama.",
+    lead: "Less protein stress.",
     tail: "More chocolate.",
     support:
-      "Mute the group chat. Eat a fudgy chocolate brownie with protein. See if they’ve calmed down by the last crumb.",
+      "Stop stressing over protein. Start eating brownies. You’ve got enough going on without a snack giving you homework.",
     action: "I Want a Bite",
     href: "/early-access",
   },
   {
     id: "J",
-    lead: "Boujee taste.",
-    tail: "Zero velvet ropes.",
+    lead: "Good brownies.",
+    tail: "Absurd protein.",
     support:
-      "A chocolate brownie with protein, dressed like it has a dinner reservation. You’re eating it in socks.",
+      "One fudgy chocolate brownie with protein and zero interest in your 5 a.m. routine.",
     action: "Meet the Boos",
     href: "/shop",
   },
@@ -151,11 +159,11 @@ export const variants = [
 
 export const questions = [
   [
-    "How much protein does each brownie contain?",
-    "We’ll publish verified nutrition for each formulation and pack before orders open. The 50 g, 200 g and 250 g labels refer to finished product weight.",
+    "Where are the protein numbers?",
+    "We’re putting the numbers through their final checks. Verified nutrition goes up before orders open. The 50 g, 200 g and 250 g labels are brownie weights.",
   ],
   [
-    "What’s the difference between the three formulations?",
+    "Wait, what’s different about the three Boos?",
     "The Original Boo uses soy and peanut proteins. Double Trouble uses soy, whey and peanut proteins. Boujee Boo uses whey and milk proteins.",
   ],
   [
@@ -167,19 +175,19 @@ export const questions = [
     "The Original Boo contains soy and peanuts. Double Trouble contains soy, peanuts and milk. Boujee Boo contains milk. Final labels will confirm the full allergen and cross-contact information.",
   ],
   [
-    "How should I store them?",
-    "We’ll share storage instructions with the final packaging.",
+    "Where do I stash my brownies?",
+    "The final wrapper will have storage instructions. Your hiding spot is between you and your conscience.",
   ],
   [
-    "What’s their shelf life?",
+    "How long do these keep? Hypothetically.",
     "Shelf life is being validated. Use the date and instructions on the final pack when available.",
   ],
   [
-    "How do product drops work?",
-    "A drop is a scheduled production batch. Once a batch is confirmed, its line-up, release and dispatch information will appear on the Drops page.",
+    "What’s a drop, and is it dramatic?",
+    "A drop is a scheduled batch of brownies. Once it’s confirmed, the Drops page gets the lineup, release date and dispatch details. That’s the whole plot.",
   ],
   [
-    "How does early access work?",
+    "How do I get the brownie gossip first?",
     "Join the Boo Club with your email to register interest in upcoming drops and restocks. Release details will be shared when confirmed.",
   ],
   [
@@ -187,8 +195,8 @@ export const questions = [
     "Dispatch estimates and delivery regions will be published with confirmed drops. Ordering is currently closed.",
   ],
   [
-    "Can I build an assorted box?",
-    "Yes. You can try all three formulations in the First Bite Trio or arrange your own mixes in the Boo Box preview.",
+    "Can I see all three Boos at once?",
+    "Yes. The First Bite Trio brings all three together. In the Boo Box preview, you choose who gets each seat.",
   ],
   [
     "Can I cancel or modify my order?",

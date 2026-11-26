@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s · Brownie Boo!",
   },
   description:
-    "Life comes with enough drama. Meet Brownie Boo!’s chocolate brownies with protein and get first bite when a drop opens.",
+    "Fudgy chocolate brownies with protein and opinions about your group chat. Meet the three Boos and get first bite when a drop opens.",
   robots: { index: false, follow: false },
 };
 

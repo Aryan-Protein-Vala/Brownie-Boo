@@ -85,7 +85,7 @@ export async function request<T>(
   } catch {
     return {
       ok: false,
-      message: "Couldn’t reach the local preview. Please try again.",
+      message: "The connection dropped a crumb. Please try again.",
     };
   }
 }

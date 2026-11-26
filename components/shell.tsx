@@ -277,7 +277,7 @@ export function Header() {
 
 const footerGroups = [
   {
-    title: "Explore",
+    title: "The good stuff",
     links: [
       ["/shop", "Shop All"],
       ["/drops", "Upcoming Drops"],
@@ -286,7 +286,7 @@ const footerGroups = [
     ],
   },
   {
-    title: "Help",
+    title: "The receipts",
     links: [
       ["/ingredients", "Ingredients & Nutrition"],
       ["/faq", "FAQ"],
@@ -307,8 +307,7 @@ export function Footer() {
             <ExpressiveBoo />
             <p>
               “Hi. I’m Boo.
-              <br />
-              Here for the crumbs.”
+              <br />I have crumbs in my pockets.”
             </p>
           </div>
           <SiteLink className="foot-club ink-action" href="/early-access">
