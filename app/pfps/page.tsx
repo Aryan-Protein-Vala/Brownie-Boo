@@ -36,7 +36,10 @@ export default function ProfilePicturesPage() {
           <p className={styles.kicker}>Boo’s profile pictures</p>
           <h1 id="pfps-title">Boo, in <em>{expressions.length} moods.</em></h1>
           <p>The same Boo from the homepage, ready for Instagram or X. Each PNG is <span className={styles.dimensions}>1080 × 1080</span> and framed for a circular crop.</p>
-          <a className={styles.galleryLink} href="#boo-moods">See more moods <Arrow /></a>
+          <div className={styles.introLinks}>
+            <a className={styles.galleryLink} href="#boo-moods">See more moods <Arrow /></a>
+            <a className={styles.download} href="/pfps/brownie-boo-profile-pictures.zip" download>Download all (ZIP)</a>
+          </div>
         </div>
         <figure className={styles.feature}>
           <Image

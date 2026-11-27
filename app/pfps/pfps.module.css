@@ -56,7 +56,11 @@
   background: url("/art/sketch-rule.svg") left calc(50% + 0.82rem) / 100% 3px no-repeat;
 }
 
-.galleryLink {
+.introLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
   margin-top: 0.55rem;
 }
 
