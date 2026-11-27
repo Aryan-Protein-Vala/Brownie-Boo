@@ -1,0 +1,179 @@
+.page {
+  --portrait-paper: #fff2f7;
+  --portrait-divider: #310e254d;
+  background: var(--portrait-paper);
+  padding: clamp(2.65rem, 7vw, 7rem) var(--gutter);
+}
+
+.intro,
+.gallery {
+  max-width: 76rem;
+  margin-inline: auto;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.8rem clamp(1.8rem, 6vw, 6.5rem);
+}
+
+.kicker {
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.copy h1 {
+  margin: 0.9rem 0 1.2rem;
+  font-size: clamp(3.3rem, 8vw, 7.1rem);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.copy h1 em {
+  display: block;
+}
+
+.copy > p:not(.kicker) {
+  max-width: 35ch;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+
+.dimensions {
+  white-space: nowrap;
+}
+
+.galleryLink,
+.download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  width: fit-content;
+  min-height: 2.75rem;
+  font-weight: 750;
+  background: url("/art/sketch-rule.svg") left calc(50% + 0.82rem) / 100% 3px no-repeat;
+}
+
+.galleryLink {
+  margin-top: 0.55rem;
+}
+
+.galleryLink svg {
+  width: 1rem;
+  height: 1rem;
+  rotate: 90deg;
+}
+
+.galleryLink:hover,
+.download:hover {
+  color: #7b2a53;
+}
+
+.galleryLink:focus-visible,
+.download:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.feature {
+  max-width: 28rem;
+  width: 100%;
+  justify-self: end;
+}
+
+.feature > img,
+.portraits img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  background: #f7b3d0;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.65rem;
+  min-height: 3.35rem;
+  border-bottom: 1px solid var(--portrait-divider);
+}
+
+.caption .download {
+  margin-left: auto;
+  font-size: 0.86rem;
+}
+
+.caption .download svg {
+  flex: none;
+}
+
+.circle {
+  border-radius: 50%;
+  flex: none;
+}
+
+.featureLabel {
+  display: grid;
+  line-height: 1.25;
+}
+
+.featureLabel span {
+  font-size: 0.75rem;
+}
+
+.gallery {
+  margin-top: clamp(3rem, 7vw, 7.5rem);
+}
+
+.gallery h2 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  margin-bottom: 1.3rem;
+}
+
+.portraits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.6rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 970px) {
+  .portraits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+
+  .feature {
+    justify-self: start;
+  }
+
+  .gallery {
+    margin-top: 3.5rem;
+  }
+
+  .portraits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 0.65rem;
+  }
+
+  .portraits .caption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0.45rem;
+  }
+
+  .portraits .download {
+    margin-left: 0;
+  }
+}
