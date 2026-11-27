@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { JsonLd } from "../components/json-ld";
 import { Arrow, BiteEdge, Drips, DropMeltMask, Spark } from "../components/art";
 import { CommunityReels } from "../components/community-reels";
 import { ExpressiveBoo } from "../components/expressive-boo";
@@ -10,7 +11,15 @@ import { SiteLink } from "../components/shell";
 import { art, variants } from "../lib/catalogue";
 import { hasLocalServices } from "../lib/preview-mode";
 import { formSubmitEndpoint, hasCustomerForms } from "../lib/formsubmit";
+import { organization, publicMetadata, publicOrigin } from "../lib/search";
 import "./home-film.css";
+
+export const metadata = publicMetadata({
+  path: "/",
+  title: "Chocolate Protein Brownies",
+  description: "Brownie Boo is an Indian brownie brand developing fudgy chocolate brownies with added protein. Meet the three brownie concepts and check first-batch updates.",
+  image: "/art/the-break.webp",
+});
 
 export default async function Home({
   searchParams,
@@ -30,6 +39,22 @@ export default async function Home({
 
   return (
     <HomeFilm>
+      {organization && publicOrigin && (
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            organization,
+            {
+              "@type": "WebSite",
+              "@id": `${publicOrigin}/#website`,
+              name: "Brownie Boo!",
+              url: publicOrigin,
+              inLanguage: "en-IN",
+              publisher: { "@id": organization["@id"] },
+            },
+          ],
+        }} />
+      )}
       <Hero
         key={variant.id}
         initial={variant}

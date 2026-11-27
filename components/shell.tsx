@@ -20,6 +20,7 @@ const nav = [
   ["/drops", "The Drop"],
   ["/build-a-box", "Build a Box"],
   ["/our-story", "Our Story"],
+  ["/blog", "Journal"],
 ] as const;
 
 export function RouteTransition({ children }: { children: ReactNode }) {
@@ -283,6 +284,8 @@ const footerGroups = [
       ["/drops", "Upcoming Drops"],
       ["/build-a-box", "Build Your Boo Box"],
       ["/our-story", "Our Story"],
+      ["/marketing", "Marketing"],
+      ["/blog", "The Crumb Files"],
     ],
   },
   {

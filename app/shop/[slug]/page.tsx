@@ -5,6 +5,7 @@ import { Waitlist } from "../../../components/forms";
 import { ProductControls } from "../../../components/shop";
 import { SiteLink } from "../../../components/shell";
 import { art, findProduct, packs, products } from "../../../lib/catalogue";
+import { publicMetadata } from "../../../lib/search";
 import { formSubmitEndpoint, hasCustomerForms } from "../../../lib/formsubmit";
 
 type Props = {
@@ -16,7 +17,13 @@ export function generateStaticParams() {
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = findProduct((await params).slug);
-  return { title: product?.name ?? "Brownie" };
+  if (!product) return { title: "Brownie" };
+  return publicMetadata({
+    path: `/shop/${product.slug}`,
+    title: `${product.name} · Chocolate Brownie`,
+    description: `Meet ${product.name}, a Brownie Boo chocolate brownie concept made with ${product.ingredients.toLowerCase()}. See the ingredients and first-batch information.`,
+    image: art(product.wrapper),
+  });
 }
 
 export default async function ProductPage({ params, searchParams }: Props) {

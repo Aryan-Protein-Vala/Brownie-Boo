@@ -5,6 +5,7 @@ import { Arrow, Boo, Drips, SketchCount } from "../../components/art";
 import { Account, Contact, Track, Waitlist } from "../../components/forms";
 import { SiteLink } from "../../components/shell";
 import { art, products, questions } from "../../lib/catalogue";
+import { publicInfoDescriptions, publicMetadata } from "../../lib/search";
 import { hasLocalServices } from "../../lib/preview-mode";
 import { formSubmitEndpoint, hasCustomerForms } from "../../lib/formsubmit";
 
@@ -32,7 +33,14 @@ export function generateStaticParams() {
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const info = (await params).info;
-  return { title: isRoute(info) ? titles[info] : "All crumbs" };
+  if (!isRoute(info)) return { title: "All crumbs" };
+  if (!Object.hasOwn(publicInfoDescriptions, info)) return { title: titles[info] };
+  return publicMetadata({
+    path: `/${info}`,
+    title: titles[info],
+    description: publicInfoDescriptions[info as keyof typeof publicInfoDescriptions],
+    image: info === "drops" ? "/art/drop-1120.webp" : "/art/ritual-960.webp",
+  });
 }
 
 function Page({
@@ -224,6 +232,9 @@ export default async function Info({ params }: Props) {
               <SiteLink href="/faq" className="text-link">
                 Read the FAQ <Arrow />
               </SiteLink>
+              <p><SiteLink href="/blog/what-is-a-protein-brownie" className="text-link">
+                How to read a protein brownie label
+              </SiteLink></p>
             </section>
           </div>
         </Page>

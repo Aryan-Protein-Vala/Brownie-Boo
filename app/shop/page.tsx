@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import { publicMetadata } from "../../lib/search";
 import { Arrow, Drips } from "../../components/art";
 import { SiteLink } from "../../components/shell";
 import { art, packs, products } from "../../lib/catalogue";
 
-export const metadata: Metadata = { title: "The Boo Family" };
+export const metadata = publicMetadata({
+  path: "/shop",
+  title: "Chocolate Brownies with Protein",
+  description: "Meet The Original Boo, Double Trouble, and Boujee Boo. Explore Brownie Boo’s three chocolate brownie concepts, their protein sources, and first-batch plans.",
+  image: "/art/drop-1120.webp",
+});
 
 export default async function Shop({
   searchParams,

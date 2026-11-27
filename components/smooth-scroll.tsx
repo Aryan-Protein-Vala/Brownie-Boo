@@ -26,9 +26,13 @@ export function scrollToScene(target: number, immediate = false) {
 
 export function SmoothScroll() {
   const path = usePathname();
+  const usesNativeScroll = path === "/marketing";
   const instance = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // The gallery combines vertical reading with native horizontal swipe tracks.
+    if (usesNativeScroll) return;
+
     gsap.registerPlugin(ScrollTrigger);
     gsap.ticker.lagSmoothing(0);
     const preference = matchMedia("(prefers-reduced-motion: no-preference)");
@@ -99,14 +103,15 @@ export function SmoothScroll() {
       preference.removeEventListener("change", configure);
       clean();
     };
-  }, []);
+  }, [usesNativeScroll]);
 
   useEffect(() => {
+    if (usesNativeScroll) return;
     const lenis = instance.current;
     if (lenis) lenis.scrollTo(window.scrollY, { immediate: true, force: true });
     const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
     return () => cancelAnimationFrame(frame);
-  }, [path]);
+  }, [path, usesNativeScroll]);
 
   return null;
 }

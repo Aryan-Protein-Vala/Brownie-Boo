@@ -1,0 +1,95 @@
+.collection {
+  background: #f2e4f8;
+  padding: clamp(3rem, 7vw, 7rem) var(--gutter);
+}
+
+.heading, .showcase { max-width: 1400px; margin-inline: auto; }
+.heading { display:flex; justify-content:space-between; align-items:end; gap:1.25rem; padding-bottom:1.5rem; border-bottom:1px solid #300f2759; }
+.heading h2 { margin-top:.5rem; font-size:clamp(3.4rem, 7vw, 7rem); letter-spacing:-.055em; }
+.download { display:inline-flex; align-items:center; gap:.5rem; min-height:44px; font-weight:750; text-decoration:underline; text-underline-offset:.22em; }
+.showcase { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem, 5vw, 5rem); padding-top:clamp(1.75rem, 4vw, 4rem); align-items:start; }
+.campaign { min-width:0; display:grid; gap:1.15rem; }
+.campaign[data-layout="film"], .campaign[data-layout="comic"] {
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:minmax(0, .85fr) minmax(0, 1fr);
+  gap:clamp(2rem, 8vw, 8rem);
+  align-items:center;
+}
+.campaign[data-layout="film"] { padding:clamp(1.4rem, 4vw, 4rem); background:#321329; color:#fff1f7; }
+.campaign[data-layout="comic"] { padding:clamp(1.4rem, 4vw, 4rem); background:#f9c8dc; grid-template-columns:minmax(0, 1fr) minmax(0, .85fr); }
+.campaign[data-layout="comic"] > :last-child { grid-column:1; grid-row:1; }
+.campaign[data-layout="comic"] > :first-child { grid-column:2; grid-row:1; }
+.campaign[data-layout="film"] > :last-child { color:var(--ink); }
+.cardCopy h3 { margin:.46rem 0 .7rem; font-size:clamp(2rem, 4.4vw, 4.25rem); line-height:.95; letter-spacing:-.05em; }
+.campaign:is([data-layout="game"],[data-layout="news"]) h3 { font-size:clamp(1.95rem, 3.45vw, 3.4rem); }
+.cardCopy > p:not(:first-child) { max-width:33rem; }
+.cardCopy details { margin-top:.7rem; }
+.cardCopy summary { min-height:44px; display:list-item; align-content:center; cursor:pointer; font-weight:750; }
+.cardCopy details ul { display:flex; flex-wrap:wrap; list-style:none; gap:.3rem 1rem; margin:.55rem 0 0; padding:0; }
+.cardCopy details a { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; }
+.art { aspect-ratio:4/5; container-type:inline-size; overflow:hidden; }
+.art > div { position:relative; display:flex; flex-direction:column; height:100%; overflow:hidden; }
+
+/* A vertical film poster with a credit block and no card frame. */
+.film { justify-content:space-between; isolation:isolate; padding:7cqw 5cqw 4.5cqw; background:#230d1d; color:#ffdef1; text-align:center; }
+.film img { position:absolute; z-index:-2; inset:0; height:100%; width:100%; object-fit:cover; object-position:52% 42%; }
+.film::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(#280c24df, transparent 27%, #260d2252 45%, #220b20f5 80%); }
+.film[data-frame="3"] img { opacity:.46; }
+.filmSuspect { position:absolute; top:20%; left:22%; width:56%; filter:drop-shadow(0 .7cqw #ffd1ea); }
+.film small { font-size:3.6cqw; letter-spacing:.21em; text-transform:uppercase; font-weight:750; }
+.filmTitle { margin-top:auto; margin-bottom:7cqw; }
+.filmTitle strong { display:block; font:italic 24cqw/.76 Instrument, Georgia, serif; letter-spacing:-.045em; text-wrap:balance; }
+.filmTitle p { margin-top:4cqw; font-size:4.1cqw; font-weight:680; }
+.filmCredit { display:grid; grid-template-columns:15cqw 1fr auto; align-items:center; gap:2cqw; border-top:.22cqw solid #fcb7db8a; padding-top:3cqw; font-size:2.75cqw; font-weight:800; text-transform:uppercase; letter-spacing:.035em; }
+.filmCredit :global(.wordmark) { width:100%; }
+
+/* The game is composed like a road and a selection menu. */
+.game { background:#281124; color:#ffe6f3; padding:5cqw; font-family:ui-monospace, monospace; background-image:repeating-linear-gradient(transparent 0 1.5cqw,#f7bcdf10 1.5cqw 1.7cqw); }
+.gameTop, .gameBottom { display:flex; justify-content:space-between; font-size:3.25cqw; font-weight:700; color:#f3b7dd; }
+.game > strong { margin:4cqw 0 0; font-size:11.6cqw; line-height:.98; font-weight:900; text-transform:uppercase; overflow-wrap:anywhere; text-shadow:.55cqw .55cqw #a14e81; }
+.gameRoad { flex:1; position:relative; perspective:23cqw; overflow:hidden; background:#6d366d; margin-block:4cqw; }
+.gameRoad > div { position:absolute; left:50%; bottom:-12%; width:62%; height:110%; border-left:1cqw solid #efa8d2; border-right:1cqw solid #efa8d2; background:#361630; transform:translateX(-50%) rotateX(40deg); }
+.gameRoad > div:nth-child(2) { width:3%; background:repeating-linear-gradient(#efa8d2 0 9%,transparent 9% 17%); border:none; }
+.gameRoad > div:nth-child(3) { inset:auto 7% 18% auto; width:18%; height:17%; border:.7cqw solid #35132c; background:#e0b5ee; transform:rotate(-6deg); }
+.gameRoad svg { position:absolute; width:42%; left:19%; bottom:1%; filter:drop-shadow(0 .6cqw #ffe1f1); transform:rotate(-12deg); }
+.gameMenu { display:grid; grid-template-columns:1fr auto; font-size:3.36cqw; font-weight:700; gap:2.5cqw 1cqw; padding:3.7cqw 2.7cqw; border:.6cqw solid #d993c5; background:#35152c; }
+.gameMenu b { color:#f8bbd8; }
+.gameBottom { margin-top:3cqw; font-size:2.67cqw; }
+
+/* The newspaper uses a masthead, an oversized display headline and columns. */
+.news { color:#340e26; --mark-brownie:#340e26; --mark-boo:#9b2b64; background:#f9dce8; padding:6cqw; }
+.paperName { display:flex; align-items:end; gap:3cqw; justify-content:space-between; border-block:.45cqw double #340e26; padding:2.3cqw 0 2.7cqw; }
+.paperName em { font-size:9.9cqw; line-height:.85; }
+.paperName span, .news footer { font-size:2.6cqw; letter-spacing:.09em; font-weight:800; }
+.news > strong { margin:5.4cqw 0 4cqw; font-size:13.3cqw; line-height:.87; letter-spacing:-.052em; font-weight:800; text-transform:uppercase; }
+.newsStory { flex:1; display:grid; grid-template-columns:1.1fr 1fr; min-height:0; border-block:.3cqw solid #340e26; padding:3.5cqw 0; }
+.newsStory > div { display:flex; flex-direction:column; gap:2.2cqw; align-items:start; border-right:.24cqw solid #340e2680; padding-right:2cqw; }
+.newsStory p { font:italic 5.5cqw/.98 Instrument, Georgia, serif; }
+.newsStory span { font-size:3.25cqw; line-height:1.1; }
+.newsStory :global(.wordmark) { width:15cqw; margin-top:auto; }
+.newsStory > svg { align-self:center; width:100%; transform:rotate(-12deg); }
+.news footer { display:flex; justify-content:space-between; padding-top:2cqw; }
+
+/* Square comic panels and speech bubbles recall a printed strip. */
+.comic { background:#f7acd0; padding:5cqw; color:#38102c; --mark-brownie:#38102c; --mark-boo:#8e285b; }
+.comic[data-frame="2"] { background:#e7c9f6; }
+.comic[data-frame="3"] { background:#ffdbe9; }
+.comicTop, .comicBottom { display:flex; align-items:center; justify-content:space-between; font-size:3.35cqw; font-weight:800; letter-spacing:.08em; }
+.panel { flex:1; position:relative; overflow:hidden; background-color:#f4d9f9; background-image:radial-gradient(#7c3b6a62 .32cqw, transparent .37cqw); background-size:2.25cqw 2.25cqw; border:1cqw solid #38102c; margin:3cqw 0; box-shadow:1.5cqw 1.5cqw #38102c; }
+.speech { position:absolute; z-index:1; top:6cqw; left:6cqw; right:6cqw; padding:5cqw; border:.65cqw solid #38102c; border-radius:12cqw 11cqw 11cqw 1.6cqw; background:#fff2f8; }
+.speech::before { content:""; position:absolute; top:100%; left:12%; width:10cqw; height:7cqw; background:#38102c; clip-path:polygon(0 0,100% 0,0 100%); }
+.speech strong { font-size:9.2cqw; line-height:.91; display:block; letter-spacing:-.055em; }
+.speech p { margin-top:2cqw; font-size:4.12cqw; line-height:1.1; font-weight:700; }
+.panel > svg:first-of-type { position:absolute; width:69%; right:1.5%; bottom:1%; transform:rotate(-10deg); filter:drop-shadow(.55cqw .55cqw #fff2f8); }
+.panel > img { position:absolute; bottom:0; height:55%; width:100%; object-fit:cover; }
+.panel > svg:last-child { position:absolute; bottom:10%; left:8%; width:12%; color:#8e285b; }
+.comicBottom :global(.wordmark) { width:16cqw; }
+.comicBottom { font-size:2.75cqw; letter-spacing:0; }
+
+@media (max-width:740px) {
+  .heading { align-items:start; flex-direction:column; }
+  .showcase { grid-template-columns:minmax(0,1fr); }
+  .campaign[data-layout="film"], .campaign[data-layout="comic"] { grid-template-columns:minmax(0,1fr); gap:1.1rem; }
+  .campaign[data-layout="comic"] > :is(:first-child,:last-child) { grid-column:auto; grid-row:auto; }
+}
