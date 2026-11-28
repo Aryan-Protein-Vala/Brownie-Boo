@@ -66,6 +66,7 @@
   --hand-crack: 0;
   isolation: auto;
   overflow: visible;
+  padding-top: 0;
   transition: --hand-crack 0.76s var(--paper-crease);
 }
 
@@ -304,6 +305,29 @@
 }
 
 @media (max-width: 680px) {
+  .home-film {
+    --photo-drip-depth: clamp(25px, 6.3vw, 43px);
+  }
+
+  .home-film:not([data-film="staged"]) .film-break,
+  .home-film .film-finale {
+    position: relative;
+    z-index: 1;
+    mask:
+      linear-gradient(#000, #000) top / 100% calc(100% - var(--photo-drip-depth) + 1px) no-repeat,
+      url("/art/photo-drip.svg") bottom / 100% var(--photo-drip-depth) no-repeat;
+  }
+
+  .home-film:not([data-film="staged"]) .community-reels,
+  .home-film .club {
+    margin-top: calc(-1 * var(--photo-drip-depth));
+  }
+
+  .community-reels > .drips,
+  .home-film .club-edge {
+    display: none;
+  }
+
   .community-reels {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.15rem;
@@ -661,11 +685,6 @@
   pointer-events: none;
 }
 
-.run-sprite {
-  width: 100%;
-  height: auto;
-  transform: rotate(-7deg);
-}
 
 .run-actors [data-trap],
 .run-actors .run-crumb {
@@ -713,14 +732,8 @@
   padding: 0.45rem 0.8rem;
 }
 
-.run-sprite .runner-leg {
+.run-sprite .runner-arm {
   transform-box: view-box;
-}
-.run-sprite .runner-leg-back {
-  transform-origin: 152px 186px;
-}
-.run-sprite .runner-leg-front {
-  transform-origin: 92px 186px;
 }
 .run-sprite .runner-arm-back {
   transform-origin: 205px 118px;
@@ -731,31 +744,15 @@
 
 .run-console[data-phase="running"]
   .run-actor[data-airborne="false"]
-  .run-sprite {
-  animation: sprite-bob 0.27s linear alternate infinite;
-}
-.run-console[data-phase="running"]
-  .run-actor[data-airborne="false"]
-  :is(.runner-leg, .runner-arm) {
+  .runner-arm {
   animation: mascot-stride 0.24s ease-in-out alternate infinite;
 }
 .run-console[data-phase="running"]
   .run-actor[data-airborne="false"]
-  :is(.runner-leg-front, .runner-arm-back) {
+  .runner-arm-back {
   animation-direction: alternate-reverse;
 }
-.run-actor[data-airborne="true"] .runner-leg-front {
-  rotate: -18deg;
-}
-.run-actor[data-airborne="true"] .runner-leg-back {
-  rotate: 18deg;
-}
 
-@keyframes sprite-bob {
-  to {
-    transform: translateY(-3px) rotate(-9deg);
-  }
-}
 @keyframes mascot-stride {
   from {
     transform: rotate(-27deg);
@@ -786,8 +783,7 @@
   .home-film .texture-photo {
     transform: none;
   }
-  .home-film .run-sprite,
-  .home-film .run-sprite :is(.runner-leg, .runner-arm) {
+  .home-film .run-sprite .runner-arm {
     animation: none !important;
   }
 }

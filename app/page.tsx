@@ -234,7 +234,7 @@ export default async function Home({
           )}
         </div>
         <figure className="club-boo">
-          <ExpressiveBoo />
+          <ExpressiveBoo autoOnMobile />
           <figcaption>I bring snacks. I am snacks.</figcaption>
         </figure>
       </section>

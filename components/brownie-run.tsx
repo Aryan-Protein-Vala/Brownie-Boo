@@ -8,6 +8,8 @@ import {
   floor,
   newRun,
   requestJump,
+  runnerGroundY,
+  runnerLegPath,
   runnerX,
 } from "../lib/brownie-run";
 
@@ -16,6 +18,7 @@ type Phase = "ready" | "running" | "paused" | "crash";
 const slotCount = 6;
 const slots = Array.from({ length: slotCount }, (_, index) => index);
 const scoreKey = "brownie-boo-run-best";
+const runnerScale = 80 / 280;
 
 function Bakery() {
   return (
@@ -121,6 +124,9 @@ export function BrownieRun() {
   const arena = useRef<HTMLDivElement>(null);
   const view = useRef<SVGSVGElement>(null);
   const actor = useRef<SVGGElement>(null);
+  const backLeg = useRef<SVGPathElement | null>(null);
+  const frontLeg = useRef<SVGPathElement | null>(null);
+  const reducedMotion = useRef<MediaQueryList | null>(null);
   const shadow = useRef<SVGEllipseElement>(null);
   const belt = useRef<SVGPathElement>(null);
   const traps = useRef<(SVGGElement | null)[]>([]);
@@ -133,14 +139,18 @@ export function BrownieRun() {
   function paint() {
     const current = run.current;
     const x = runnerX(width.current);
+    const airborne = current.height > 5;
+    const stride = reducedMotion.current?.matches ? 0 : current.distance;
     actor.current?.setAttribute(
       "transform",
-      `translate(${x} ${floor - 61 - current.height})`,
+      `translate(${x} ${floor - current.height})`,
     );
     actor.current?.setAttribute(
       "data-airborne",
-      current.height > 5 ? "true" : "false",
+      String(airborne),
     );
+    backLeg.current?.setAttribute("d", runnerLegPath(0, stride, airborne));
+    frontLeg.current?.setAttribute("d", runnerLegPath(1, stride, airborne));
     shadow.current?.setAttribute("cx", String(x + 36));
     shadow.current?.setAttribute("rx", String(22 - current.height * 0.145));
     belt.current?.setAttribute(
@@ -235,6 +245,9 @@ export function BrownieRun() {
   useEffect(() => {
     const element = arena.current;
     if (!element) return;
+    backLeg.current = element.querySelector(".runner-leg-back");
+    frontLeg.current = element.querySelector(".runner-leg-front");
+    reducedMotion.current = matchMedia("(prefers-reduced-motion: reduce)");
     try {
       const value = Number(localStorage.getItem(scoreKey));
       if (Number.isSafeInteger(value) && value > 0) setBest(value);
@@ -316,7 +329,7 @@ export function BrownieRun() {
             viewBox="0 0 480 250"
             aria-hidden="true"
           >
-            <path d="M0 202h3000v49H0z" fill="#412036" />
+            <path d={`M0 ${floor}h3000v49H0z`} fill="#412036" />
             <path
               d="M0 207h3000m-3000 32h3000"
               stroke="#eda1c4"
@@ -335,16 +348,20 @@ export function BrownieRun() {
             <ellipse
               ref={shadow}
               cx="99"
-              cy="202"
+              cy={floor}
               rx="22"
               ry="3"
               fill="#72254b"
               opacity=".7"
             />
-            <g className="run-actor" ref={actor} transform="translate(65 141)">
-              <foreignObject width="80" height="72">
+            <g
+              className="run-actor"
+              ref={actor}
+              transform={`translate(${runnerX(480)} ${floor})`}
+            >
+              <g transform={`scale(${runnerScale}) translate(0 ${-runnerGroundY})`}>
                 <Boo pose="runner" className="run-sprite" />
-              </foreignObject>
+              </g>
             </g>
             {slots.map((id) => (
               <g

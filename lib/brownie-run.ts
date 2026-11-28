@@ -1,4 +1,20 @@
 export const floor = 202;
+export const runnerGroundY = 225;
+export const runnerLegStroke = 9;
+
+export function runnerLegPath(leg: 0 | 1, distance: number, airborne = false) {
+  const hipX = leg === 0 ? 152 : 92;
+  const hipY = leg === 0 ? 187 : 188;
+  const stride = (distance / 115 + leg * 0.5) % 1;
+  const onGround = stride < 0.5;
+  const step = onGround ? 1 - 4 * stride : 4 * stride - 3;
+  const lift = onGround ? 0 : 25 * Math.sin((stride - 0.5) * 2 * Math.PI);
+  const heelX = hipX + (airborne ? (leg === 0 ? -12 : 17) : step * 20);
+  const heelY = runnerGroundY - runnerLegStroke / 2 - (airborne ? 19 : lift);
+  const kneeX = hipX + (heelX - hipX) * 0.45 - 5 - lift * 0.24;
+  const kneeY = (hipY + heelY) / 2 + 4;
+  return `M${hipX} ${hipY}Q${kneeX} ${kneeY} ${heelX} ${heelY}h10`;
+}
 
 const obstacles = {
   tins: { width: 42, height: 42 },

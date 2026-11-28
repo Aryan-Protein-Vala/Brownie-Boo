@@ -1,4 +1,5 @@
 import type { ReactNode, SVGProps } from "react";
+import { runnerLegPath, runnerLegStroke } from "../lib/brownie-run";
 import { wordmarkPaths } from "../lib/wordmark";
 import { BooFace, type BooExpression } from "./boo-face";
 
@@ -102,6 +103,8 @@ export function Boo({
       className={className}
       data-expression={expression}
       viewBox="0 0 280 242"
+      width={pose === "runner" ? 280 : undefined}
+      height={pose === "runner" ? 242 : undefined}
       role="img"
       aria-label={
         expression
@@ -112,10 +115,10 @@ export function Boo({
       }
     >
       {pose === "runner" ? (
-        <g fill="none" stroke="#310e25" strokeWidth="9" strokeLinecap="round">
+        <g fill="none" stroke="#310e25" strokeWidth={runnerLegStroke} strokeLinecap="round">
           <path
             className="runner-leg runner-leg-back"
-            d="M152 187q-5 18 9 25l15 1"
+            d={runnerLegPath(0, 0)}
           />
           <path
             className="runner-arm runner-arm-back"
@@ -123,7 +126,7 @@ export function Boo({
           />
           <path
             className="runner-leg runner-leg-front"
-            d="M92 188q19 15 6 29l-16 3"
+            d={runnerLegPath(1, 0)}
           />
           <path
             className="runner-arm runner-arm-front"
