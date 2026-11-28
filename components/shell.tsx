@@ -171,14 +171,6 @@ export function Header() {
           >
             <Wordmark displayType />
           </SiteLink>
-          <Link
-            className="head-shop"
-            href="/shop"
-            data-curtain=""
-            aria-current={path.startsWith("/shop") ? "page" : undefined}
-          >
-            Shop <Arrow />
-          </Link>
           <nav className="desktop-nav" aria-label="Main navigation">
             {nav.map(([href, title]) => (
               <Link

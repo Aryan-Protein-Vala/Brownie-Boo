@@ -1,7 +1,6 @@
 @media (forced-colors: none) {
   :where(
     .action,
-    .head-shop,
     .nav-shop,
     .menu-button,
     .mobile-menu-top button,
@@ -33,7 +32,6 @@
 
   :is(
     .action,
-    .head-shop,
     .nav-shop,
     .menu-button,
     .mobile-menu-top button,
@@ -45,8 +43,7 @@
     .run-pause,
     .bag-quantity button
   ),
-  .site-header
-    :is(.head-shop, .nav-shop):is(:hover, :focus-visible, [aria-current]),
+  .site-header .nav-shop:is(:hover, :focus-visible, [aria-current]),
   :is(
     .action,
     .menu-button,
@@ -87,11 +84,11 @@
     --sketch-color: #5e1a40;
   }
 
-  :is(.head-shop, .nav-shop) {
+  .nav-shop {
     --sketch-shape: var(--sketch-fill);
     --sketch-color: var(--shell-rose);
   }
-  :is(.head-shop, .nav-shop):is(:hover, :focus-visible, [aria-current]) {
+  .nav-shop:is(:hover, :focus-visible, [aria-current]) {
     --sketch-color: var(--shell-milk);
   }
 
