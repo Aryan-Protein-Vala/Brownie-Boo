@@ -1199,7 +1199,7 @@ textarea:focus-visible {
   height: 100%;
   border: 1px solid var(--field-ink, #300f2779);
   background-color: var(--field-fill, transparent);
-  border-radius: 0.55rem;
+  border-radius: 1.15rem / 1.05rem;
   padding: 0.65rem 0.53rem;
   font-size: 0.88rem;
   line-height: 1.22;

@@ -41,7 +41,7 @@ export function ProductControls({
                   setStatus("");
                 }}
               />
-              <SketchField className="weight-choice">
+              <SketchField className="weight-choice" rounded>
                 {name}
                 <strong>{grams} g</strong>
               </SketchField>

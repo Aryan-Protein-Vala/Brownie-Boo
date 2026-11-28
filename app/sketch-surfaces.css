@@ -245,8 +245,7 @@
 
 .customer-form > :is(input, textarea),
 .email-row input,
-.builder-slots select,
-.weights .weight-choice {
+.builder-slots select {
   border-radius: 9px 12px 10px 8px / 11px 8px 12px 10px;
 }
 

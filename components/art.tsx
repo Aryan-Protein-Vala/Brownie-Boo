@@ -5,9 +5,11 @@ import { BooFace, type BooExpression } from "./boo-face";
 export function SketchField({
   children,
   className = "",
+  rounded = false,
 }: {
   children: ReactNode;
   className?: string;
+  rounded?: boolean;
 }) {
   return (
     <span className={className ? `sketch-field ${className}` : "sketch-field"}>
@@ -18,7 +20,11 @@ export function SketchField({
         preserveAspectRatio="none"
       >
         <path
-          d="M14 5C60 2 108 7 153 5C202 2 243 2 287 5C335 7 383 3 423 4C450 5 468 1 474 13C478 25 473 39 476 51C479 66 475 76 476 86C476 96 465 97 451 96C414 94 380 99 339 96C298 93 262 97 219 96C173 94 136 98 98 95C67 94 42 98 16 96C4 95 4 87 5 75C6 59 2 49 4 35C6 23 1 7 14 5Z"
+          d={
+            rounded
+              ? "M93 5C135 4 167 8 211 6C269 3 319 4 372 5C430 4 465 6 473 23C479 36 473 49 476 64C478 84 461 96 391 96C335 96 286 92 234 95C177 98 133 93 91 96C32 96 6 90 5 71C4 56 8 46 5 34C1 15 27 5 93 5Z"
+              : "M14 5C60 2 108 7 153 5C202 2 243 2 287 5C335 7 383 3 423 4C450 5 468 1 474 13C478 25 473 39 476 51C479 66 475 76 476 86C476 96 465 97 451 96C414 94 380 99 339 96C298 93 262 97 219 96C173 94 136 98 98 95C67 94 42 98 16 96C4 95 4 87 5 75C6 59 2 49 4 35C6 23 1 7 14 5Z"
+          }
           vectorEffect="non-scaling-stroke"
         />
       </svg>
