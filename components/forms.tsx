@@ -2,6 +2,7 @@
 
 import { ActionButton } from "./action";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { SketchField } from "./art";
 import { request } from "./store";
 
 type Result = { ok: boolean; message?: string };
@@ -20,25 +21,6 @@ function Status({ value }: { value: Result | null }) {
     <p className="form-status" role="status" data-ok={value?.ok ?? false}>
       {value?.message ?? ""}
     </p>
-  );
-}
-
-function SketchField({ children }: { children: ReactNode }) {
-  return (
-    <span className="sketch-field">
-      <svg
-        className="sketch-field-art"
-        aria-hidden="true"
-        viewBox="0 0 480 100"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M14 5C60 2 108 7 153 5C202 2 243 2 287 5C335 7 383 3 423 4C450 5 468 1 474 13C478 25 473 39 476 51C479 66 475 76 476 86C476 96 465 97 451 96C414 94 380 99 339 96C298 93 262 97 219 96C173 94 136 98 98 95C67 94 42 98 16 96C4 95 4 87 5 75C6 59 2 49 4 35C6 23 1 7 14 5Z"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-      {children}
-    </span>
   );
 }
 

@@ -10,7 +10,7 @@ import {
   type CartLine,
   type Product,
 } from "../lib/catalogue";
-import { Arrow, Bag, Drips, SketchCount } from "./art";
+import { Arrow, Bag, Drips, SketchCount, SketchField } from "./art";
 import { SiteLink } from "./shell";
 import { changeBag, useCart, request } from "./store";
 
@@ -41,10 +41,10 @@ export function ProductControls({
                   setStatus("");
                 }}
               />
-              <span>
+              <SketchField className="weight-choice">
                 {name}
                 <strong>{grams} g</strong>
-              </span>
+              </SketchField>
             </label>
           ))}
         </div>
@@ -134,37 +134,41 @@ export function BoxBuilder() {
               />
               <div>
                 <label htmlFor={`flavour-${index}`}>Brownie {index + 1}</label>
-                <select
-                  id={`flavour-${index}`}
-                  value={choice.slug}
-                  onChange={(event) =>
-                    change(index, {
-                      slug: event.target.value as Product["slug"],
-                    })
-                  }
-                >
-                  {products.map(({ slug, name }) => (
-                    <option key={slug} value={slug}>
-                      {name}
-                    </option>
-                  ))}
-                </select>
+                <SketchField>
+                  <select
+                    id={`flavour-${index}`}
+                    value={choice.slug}
+                    onChange={(event) =>
+                      change(index, {
+                        slug: event.target.value as Product["slug"],
+                      })
+                    }
+                  >
+                    {products.map(({ slug, name }) => (
+                      <option key={slug} value={slug}>
+                        {name}
+                      </option>
+                    ))}
+                  </select>
+                </SketchField>
               </div>
               <div>
                 <label htmlFor={`size-${index}`}>Pack size</label>
-                <select
-                  id={`size-${index}`}
-                  value={choice.grams}
-                  onChange={(event) =>
-                    change(index, { grams: Number(event.target.value) })
-                  }
-                >
-                  {packs.map(({ grams, name }) => (
-                    <option key={grams} value={grams}>
-                      {name} · {grams} g
-                    </option>
-                  ))}
-                </select>
+                <SketchField>
+                  <select
+                    id={`size-${index}`}
+                    value={choice.grams}
+                    onChange={(event) =>
+                      change(index, { grams: Number(event.target.value) })
+                    }
+                  >
+                    {packs.map(({ grams, name }) => (
+                      <option key={grams} value={grams}>
+                        {name} · {grams} g
+                      </option>
+                    ))}
+                  </select>
+                </SketchField>
               </div>
             </li>
           );

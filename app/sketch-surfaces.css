@@ -246,7 +246,7 @@
 .customer-form > :is(input, textarea),
 .email-row input,
 .builder-slots select,
-.weights label > span {
+.weights .weight-choice {
   border-radius: 9px 12px 10px 8px / 11px 8px 12px 10px;
 }
 
@@ -287,12 +287,14 @@
 }
 
 @media (forced-colors: none) {
-  .sketch-field > :is(input, textarea) {
+  .sketch-field > :is(input, textarea, select),
+  .weights .weight-choice {
     border-color: transparent;
-    background: transparent;
+    background-color: transparent;
   }
 
-  .sketch-field > :is(input, textarea):focus-visible {
+  .sketch-field > :is(input, textarea, select):focus-visible,
+  .weights input:focus-visible + .weight-choice {
     outline: none;
   }
 
@@ -304,14 +306,19 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    fill: var(--paper);
-    stroke: #300f278c;
+    fill: var(--field-fill, var(--paper));
+    stroke: var(--field-ink, #300f278c);
     stroke-width: 1.4px;
     stroke-linejoin: round;
     transition: stroke var(--fast) var(--ink-ease);
   }
 
-  .sketch-field:focus-within > .sketch-field-art {
+  .weights .weight-choice {
+    --field-fill: transparent;
+  }
+
+  .sketch-field:focus-within > .sketch-field-art,
+  .weights input:focus-visible + .weight-choice > .sketch-field-art {
     stroke: var(--ink);
     stroke-width: 2.6px;
   }

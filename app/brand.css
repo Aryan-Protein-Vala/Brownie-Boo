@@ -357,6 +357,7 @@
   :is(
     a[href],
     button:not(:disabled),
+    select:not(:disabled),
     summary,
     .run-arena,
     label:has(input:is([type="checkbox"], [type="radio"]))
